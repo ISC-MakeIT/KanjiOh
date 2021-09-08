@@ -30,7 +30,7 @@ export default class Index extends Phaser.Scene {
       this.load.image('tree', '../img/tree.png');
 
       // bgm
-      this.load.audio('top_bgm', '../audio/top.mp3');
+      // this.load.audio('top_bgm', '../audio/top.mp3');
 
     };
 
@@ -89,9 +89,9 @@ export default class Index extends Phaser.Scene {
         let sound_icon = this.add.image(70,700,'sound');
         sound_icon.depth = 4;
         
-        let bgm = this.sound.add('top_bgm');
+        // let bgm = this.sound.add('top_bgm');
         // bgm.setLoop(loop)
-        bgm.play();
+        // bgm.play();
 
         // let sound_cnt = 1;
         // click(sound_cnt){
