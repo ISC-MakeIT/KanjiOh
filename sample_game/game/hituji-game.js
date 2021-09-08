@@ -23,7 +23,7 @@ export default class GameHitsuji extends Phaser.Scene {
             for (let x = 0; x < this.sizeX; x++) {
                 this.kanjiComponents.push([]);
                 this.kanjiComponents[y].push(
-                    this.add.text(80 + x * 80, 200 + y * 80, " ", {
+                    this.add.text(80 + x * 80, 200 + y * 80, "　", {
                         fontSize: 60,
                         fontFamily: 'Arial',
                     }).setInteractive()
