@@ -1,9 +1,8 @@
+import { kanjiList } from "./kanjilist.js";
+
 export default class Hitsuji_game extends Phaser.Scene {
     constructor() {
-        // super("hitsuji_game");
         super({key: "hituji_game", active: false});
-        // ここら辺で漢字データ読み込み
-        this.kanjiList = [["石", "右"], ["日", "白"], ["見", "貝"], ["木", "本"], ["上", "土"], ["大", "犬"], ["立", "土"], ["五", "正"], ["入", "人"], ["子", "手"],]
         this.kanjiIndex = 0;
         this.kanjiComponents = [];
         this.timer = 0;
@@ -21,11 +20,12 @@ export default class Hitsuji_game extends Phaser.Scene {
     };
 
     init(data) {
+        console.log(data);
         this.mode = data.mode;
         this.schoolYear = data.schoolYear;
         this.sizeY = data.size[0] - 0;
         this.sizeX = data.size[2] - 0;
-        console.log(this.mode);
+        this.kanjiList = kanjiList[data.schoolYear];
     }
 
     create() {
@@ -122,9 +122,6 @@ export default class Hitsuji_game extends Phaser.Scene {
 
     check() {
         let fx = this.sound.add('game_bgm');
-        if (this.mode === "timeLimit") {
-            console.log("ok");
-        }
         if (
             this.mode === "timeLimit" && this.timer >= 60 ||
             this.mode === "timeAttack" && this.answerCounter >= 10 ||
@@ -155,7 +152,6 @@ export default class Hitsuji_game extends Phaser.Scene {
         const answerY = Math.floor(Math.random() * this.sizeY);
         const answerX = Math.floor(Math.random() * this.sizeX);
         const i = this.kanjiIndex;
-        const j = Math.floor(Math.random() * 2);
         
         // 正解/不正解SE
         let correct = this.sound.add('correct_se');
@@ -166,7 +162,7 @@ export default class Hitsuji_game extends Phaser.Scene {
                 this.kanjiComponents[y][x].off("pointerdown");
 
                 if (y === answerY && x === answerX) {
-                    this.kanjiComponents[y][x].setText(this.kanjiList[i][j ^ 1]);
+                    this.kanjiComponents[y][x].setText(this.kanjiList[i][1]);
                     this.kanjiComponents[y][x].once("pointerdown", () => {
                         correct.play();
 
@@ -177,7 +173,7 @@ export default class Hitsuji_game extends Phaser.Scene {
                     })
 
                 } else {
-                    this.kanjiComponents[y][x].setText(this.kanjiList[i][j]);
+                    this.kanjiComponents[y][x].setText(this.kanjiList[i][0]);
                     this.kanjiComponents[y][x].once("pointerdown", () => {
                         but.play();
                         this.wrongFlag = true;

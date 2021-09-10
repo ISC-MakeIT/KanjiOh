@@ -5,7 +5,7 @@ export default class Game_setting extends Phaser.Scene {
     super({key: "game_setting", active: false});
     this.size = "4x8";
     this.mode = "timeLimit";
-    this.schoolYear = 0;
+    this.schoolYear = "1年生";
 
     this.sizeButtons = {};
     this.modeButtons = {};
@@ -162,12 +162,12 @@ create() {
     //     });
     // });
 
-    // this.schoolYearButtons[0] = this.add.text(10, 220, "1年生");
-    // this.schoolYearButtons[1] = this.add.text(90, 220, "2年生");
-    // this.schoolYearButtons[2] = this.add.text(170, 220, "3年生");
-    // this.schoolYearButtons[3] = this.add.text(260, 220, "4年生");
-    // this.schoolYearButtons[4] = this.add.text(350, 220, "5年生");
-    // this.schoolYearButtons[5] = this.add.text(440, 220, "6年生");
+    // this.schoolYearButtons["1年生"] = this.add.text(10, 220, "1年生");
+    // this.schoolYearButtons["2年生"] = this.add.text(90, 220, "2年生");
+    // this.schoolYearButtons["3年生"] = this.add.text(170, 220, "3年生");
+    // this.schoolYearButtons["4年生"] = this.add.text(260, 220, "4年生");
+    // this.schoolYearButtons["5年生"] = this.add.text(350, 220, "5年生");
+    // this.schoolYearButtons["6年生"] = this.add.text(440, 220, "6年生");
     // Object.keys(this.schoolYearButtons).forEach((key) => {
     //     const value = this.schoolYearButtons[key];
     //     value.setStyle({
@@ -208,17 +208,6 @@ create() {
                         });
         },this)
         .depth = 1;
-
-    // this.add.text(437, 666, "GameStart", { fontSize: 100 }).setInteractive().on("pointerdown", () => {
-    //     this.scene.start(
-    //         "hitsuji_game",
-    //         {
-    //             size: this.size,
-    //             mode: this.mode,
-    //             schoolYear: this.schoolYear,
-    //         }
-    //     )
-    // })
 }
 
 // select() {
