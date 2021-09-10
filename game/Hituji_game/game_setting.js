@@ -23,9 +23,6 @@ preload(){
 
 
 create() {
-    console.log("hage");
-
-    
     //--- ボタン---
     
     //--- ✖ボタン・イベント ---
@@ -147,9 +144,9 @@ create() {
         });
     });
 
-    this.modeButtons["timeLimit"] = this.add.text(10, 160, "時間制限");
-    this.modeButtons["timeAttack"] = this.add.text(120, 160, "タイムアタック");
-    this.modeButtons["suddenDeath"] = this.add.text(300, 160, "サドンデス");
+    this.modeButtons["timeLimit"] = this.add.text(10, 400, "時間制限");
+    this.modeButtons["timeAttack"] = this.add.text(120, 400, "タイムアタック");
+    this.modeButtons["suddenDeath"] = this.add.text(300, 400, "サドンデス");
     Object.keys(this.modeButtons).forEach((key) => {
         const value = this.modeButtons[key];
         value.setStyle({
@@ -162,12 +159,12 @@ create() {
         });
     });
 
-    this.schoolYearButtons["1年生"] = this.add.text(10, 220, "1年生");
-    this.schoolYearButtons["2年生"] = this.add.text(90, 220, "2年生");
-    this.schoolYearButtons["3年生"] = this.add.text(170, 220, "3年生");
-    this.schoolYearButtons["4年生"] = this.add.text(260, 220, "4年生");
-    this.schoolYearButtons["5年生"] = this.add.text(350, 220, "5年生");
-    this.schoolYearButtons["6年生"] = this.add.text(440, 220, "6年生");
+    this.schoolYearButtons["1年生"] = this.add.text(10, 550, "1年生");
+    this.schoolYearButtons["2年生"] = this.add.text(90, 550, "2年生");
+    this.schoolYearButtons["3年生"] = this.add.text(170,550, "3年生");
+    this.schoolYearButtons["4年生"] = this.add.text(260,550, "4年生");
+    this.schoolYearButtons["5年生"] = this.add.text(350,550, "5年生");
+    this.schoolYearButtons["6年生"] = this.add.text(440,550, "6年生");
     Object.keys(this.schoolYearButtons).forEach((key) => {
         const value = this.schoolYearButtons[key];
         value.setStyle({
