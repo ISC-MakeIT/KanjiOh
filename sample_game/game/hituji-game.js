@@ -70,9 +70,6 @@ export default class GameHitsuji extends Phaser.Scene {
     }
 
     check() {
-        if (this.mode === "timeLimit") {
-            console.log("ok");
-        }
         if (
             this.mode === "timeLimit" && this.timer >= 60 ||
             this.mode === "timeAttack" && this.answerCounter >= 10 ||
