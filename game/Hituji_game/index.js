@@ -1,4 +1,5 @@
 import Game_menu from "./game_menu.js";
+import Game_menu from "./game_setting.js";
 
 
 class Window_setting extends Phaser.Scene {  
