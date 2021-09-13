@@ -105,9 +105,11 @@ export default class Game_menu extends Phaser.Scene {
             .setInteractive()
             .setPadding(4)
             .on('pointerdown',()=>{
+                fx.stop();
                 this.scene.start('game_setting');
-            },this)
-            .depth = 2;
+                console.log("hoge");
+            },this);
+            fnd_diff_text.depth = 2;
 
         // 多言語文字ボタン/テキスト
         let mny_lng_btn = this.add.graphics();
@@ -133,8 +135,8 @@ export default class Game_menu extends Phaser.Scene {
             .lineStyle(5, 0x645246)
             .fillStyle(0xffffff, 1)
             .fillRoundedRect(30, 360, 350, 90, 45)
-            .strokePath()
-            .depth = 1;
+            .strokePath();
+            memory_gm_btn.depth = 1;
 
         let memory_text = this.add.text(140,390, "神経衰弱", {
             fontSize: '32px',
@@ -151,8 +153,8 @@ export default class Game_menu extends Phaser.Scene {
             .lineStyle(5, 0x645246)
             .fillStyle(0xffffff, 1)
             .fillRoundedRect(30, 490, 350, 90, 45)
-            .strokePath()
-            .depth = 1;
+            .strokePath();
+            tgther_frnd_btn.depth = 1;
 
         // 仲間で集まれ～テキスト
         let tgther_text = this.add.text(100,520, "仲間で集まれ", { 
@@ -174,8 +176,8 @@ export default class Game_menu extends Phaser.Scene {
                 .lineStyle(5, 0x645246)
                 .fillStyle(0x32b65e, 1)
                 .fillRoundedRect(30, 230, 350, 90, 45)
-                .strokePath()
-                .depth = 1;
+                .strokePath();
+            // mny_lng_btn.depth = 1;
 
             mny_lng_text.destroy();
             mny_lng_text = this.add.text(150,260, "作成中", { 
@@ -189,8 +191,9 @@ export default class Game_menu extends Phaser.Scene {
                 .lineStyle(5, 0x645246)
                 .fillStyle(0x32b65e, 1)
                 .fillRoundedRect(30, 360, 350, 90, 45)
-                .strokePath()
-                .depth = 1;
+                .strokePath();
+
+                // memory_gm_btn.depth = 1;
 
             memory_text.destroy();
             memory_text = this.add.text(150,390, "作成中", { 
@@ -198,23 +201,21 @@ export default class Game_menu extends Phaser.Scene {
                 fill: '#ffffff'
             }).setPadding(4).depth = 2;
 
-            
-            
+
             // 仲間で集まれ
             tgther_frnd_btn
                 .lineStyle(5, 0x645246)
                 .fillStyle(0x32b65e, 1)
                 .fillRoundedRect(30, 490, 350, 90, 45)
-                .strokePath()
-                .depth = 1;
+                .strokePath();
+
+                // tgther_frnd_btn.depth = 1;
 
             tgther_text.destroy();
             tgther_text = this.add.text(150,520, "作成中", { 
                 fontSize: '32px',
                 fill: '#ffffff'
             }).setPadding(4).depth = 2;
-
-
 
         },3000)
     }
