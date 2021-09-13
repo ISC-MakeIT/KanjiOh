@@ -1,5 +1,5 @@
 import Game_menu from "./game_menu.js";
-import Game_menu from "./game_setting.js";
+import Game_setting from "./game_setting.js";
 
 
 class Window_setting extends Phaser.Scene {  
@@ -152,3 +152,4 @@ var game = new Phaser.Game(config);
 game.scene.add("game_menu", Game_menu);
 game.scene.add("window", Window_setting);
 game.scene.add("logo", Open_logo);
+game.scene.add("game_setting", Game_setting);
