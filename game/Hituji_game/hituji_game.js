@@ -51,7 +51,7 @@ export default class Hitsuji_game extends Phaser.Scene {
         let fx = this.sound.add('game_bgm');
         fx.allowMultiple = false;
         fx.setLoop(true);
-        fx.play();
+        // fx.play();
         // console.log(sound_status);
     
         sound_icon.on('pointerdown',()=>{
@@ -121,6 +121,7 @@ export default class Hitsuji_game extends Phaser.Scene {
     }
 
     check() {
+        let fx = this.sound.add('game_bgm');
         if (this.mode === "timeLimit") {
             console.log("ok");
         }
@@ -129,7 +130,9 @@ export default class Hitsuji_game extends Phaser.Scene {
             this.mode === "timeAttack" && this.answerCounter >= 10 ||
             this.mode === "suddenDeath" && this.wrongFlag
         ) {
+            fx.stop();
             this.scene.start(
+
                 "game_result",
                 {
                     time: this.timer,

@@ -1,7 +1,7 @@
 import Game_menu from "./game_menu.js";
 import Game_setting from "./game_setting.js";
 import Hituji_game from "./hituji_game.js";
-
+import Game_result from "./game_result.js";
 
 class Window_setting extends Phaser.Scene {  
     constructor() {
@@ -155,3 +155,4 @@ game.scene.add("window", Window_setting);
 game.scene.add("logo", Open_logo);
 game.scene.add("game_setting", Game_setting);
 game.scene.add("hituji_game", Hituji_game);
+game.scene.add("game_result", Game_result);
