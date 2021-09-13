@@ -201,7 +201,11 @@ create() {
         .setPadding(4) 
         .setInteractive()
         .on('pointerdown',()=>{
-            this.scene.start('hituji_game');
+            this.scene.start('hituji_game', {
+                            size: this.size,
+                            mode: this.mode,
+                            schoolYear: this.schoolYear,
+                        });
         },this)
         .depth = 1;
 
