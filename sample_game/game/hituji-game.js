@@ -1,8 +1,8 @@
+import { kanjiList } from "./kanjilist.js";
+
 export default class GameHitsuji extends Phaser.Scene {
     constructor() {
         super("game-hitsuji");
-        // ここら辺で漢字データ読み込み
-        this.kanjiList = [["石", "右"], ["日", "白"], ["見", "貝"], ["木", "本"], ["上", "土"], ["大", "犬"], ["立", "土"], ["五", "正"], ["入", "人"], ["子", "手"],]
         this.kanjiIndex = 0;
         this.kanjiComponents = [];
         this.timer = 0;
@@ -15,7 +15,7 @@ export default class GameHitsuji extends Phaser.Scene {
         this.schoolYear = data.schoolYear;
         this.sizeY = data.size[0] - 0;
         this.sizeX = data.size[2] - 0;
-        console.log(this.mode);
+        this.kanjiList = kanjiList[data.schoolYear];
     }
 
     create() {
@@ -70,9 +70,6 @@ export default class GameHitsuji extends Phaser.Scene {
     }
 
     check() {
-        if (this.mode === "timeLimit") {
-            console.log("ok");
-        }
         if (
             this.mode === "timeLimit" && this.timer >= 60 ||
             this.mode === "timeAttack" && this.answerCounter >= 10 ||
@@ -101,14 +98,13 @@ export default class GameHitsuji extends Phaser.Scene {
         const answerY = Math.floor(Math.random() * this.sizeY);
         const answerX = Math.floor(Math.random() * this.sizeX);
         const i = this.kanjiIndex;
-        const j = Math.floor(Math.random() * 2);
 
         for (let y = 0; y < this.sizeY; y++) {
             for (let x = 0; x < this.sizeX; x++) {
                 this.kanjiComponents[y][x].off("pointerdown");
 
                 if (y === answerY && x === answerX) {
-                    this.kanjiComponents[y][x].setText(this.kanjiList[i][j ^ 1]);
+                    this.kanjiComponents[y][x].setText(this.kanjiList[i][1]);
                     this.kanjiComponents[y][x].once("pointerdown", () => {
                         this.answerCounter++;
                         this.answerComponent.setText(`正解数:${this.answerCounter}問`);
@@ -117,7 +113,7 @@ export default class GameHitsuji extends Phaser.Scene {
                     })
 
                 } else {
-                    this.kanjiComponents[y][x].setText(this.kanjiList[i][j]);
+                    this.kanjiComponents[y][x].setText(this.kanjiList[i][0]);
                     this.kanjiComponents[y][x].once("pointerdown", () => {
                         this.wrongFlag = true;
                         this.check()
