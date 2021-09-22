@@ -13,9 +13,9 @@ export default class Hitsuji_game extends Phaser.Scene {
     preload(){
         
         // bgm
-        this.load.audio('game_bgm', '../../audio/timer.mp3');
-        this.load.audio('correct_se', '../../audio/correct.mp3');
-        this.load.audio('but_se', '../../audio/but_se.mp3');
+        this.load.audio('game_bgm', '../audio/timer.mp3');
+        this.load.audio('correct_se', '../audio/correct.mp3');
+        this.load.audio('but_se', '../audio/but_se.mp3');
 
     };
 

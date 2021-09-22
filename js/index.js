@@ -107,7 +107,7 @@ class Open_logo extends Phaser.Scene {
 
     preload(){
         // ロゴマーク
-        this.load.image('logo', '../../img/logo_touka.png');
+        this.load.image('logo', '../img/logo_touka.png');
     };
     
     create(){
