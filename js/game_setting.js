@@ -14,10 +14,10 @@ export default class Game_setting extends Phaser.Scene {
 
 preload(){
     // メニュー画面に出てくる画像のロード
-        this.load.image('sound', '../../img/sound.png');
+        this.load.image('sound', '../img/sound.png');
 
     // bgm
-    //    this.load.audio('top_bgm', '../../audio/top.mp3');
+    //    this.load.audio('top_bgm', '../audio/top.mp3');
 
 };
 

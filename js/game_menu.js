@@ -7,13 +7,13 @@ export default class Game_menu extends Phaser.Scene {
     preload(){
         // メニュー画面に出てくる画像のロード
         
-        this.load.image('sound', '../../img/sound.png');
-        this.load.image('bg', '../../img/bg.png');
-        this.load.image('cloud', '../../img/game_cloud.png');  
-        this.load.image('tree', '../../img/tree.png');  
-        this.load.image('top_mogura', '../../img/mogura.png');
+        this.load.image('sound', '../img/sound.png');
+        this.load.image('bg', '../img/bg.png');
+        this.load.image('cloud', '../img/game_cloud.png');  
+        this.load.image('tree', '../img/tree.png');  
+        this.load.image('top_mogura', '../img/mogura.png');
         // bgm
-        this.load.audio('top_bgm', '../../audio/top.mp3');
+        this.load.audio('top_bgm', '../audio/top.mp3');
 
     };
 
