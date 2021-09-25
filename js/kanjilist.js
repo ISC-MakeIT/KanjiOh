@@ -278,3 +278,4 @@ export const kanjiList = {
     ["凰", "鳳"],
   ],
 };
+export default kanjiList;
