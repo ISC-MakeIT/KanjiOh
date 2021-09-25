@@ -1,6 +1,6 @@
-import { kanjiList } from "./kanjilist";
+import { kanjiList } from "./kanjilist.js";
 
-export default class Hitsuji_game extends Phaser.Scene {
+export default class HitsujiGame extends Phaser.Scene {
   constructor() {
     super({ key: "hituji_game", active: false });
     this.kanjiIndex = 0;
@@ -27,20 +27,20 @@ export default class Hitsuji_game extends Phaser.Scene {
 
   create() {
     // 背景
-    const bg_game_menu = this.add.graphics();
-    bg_game_menu.fillStyle(0xeaeaea, 1).fillRect(0, 0, 1024, 768);
-    bg_game_menu.depth = 0;
+    const bgGameMenu = this.add.graphics();
+    bgGameMenu.fillStyle(0xeaeaea, 1).fillRect(0, 0, 1024, 768);
+    bgGameMenu.depth = 0;
 
     // 音声アイコン枠描画
-    const sound_circle = this.add.graphics();
-    sound_circle.fillStyle(0x333333, 1).fillCircle(70, 700, 40);
-    sound_circle.depth = 3;
+    const soundCircle = this.add.graphics();
+    soundCircle.fillStyle(0x333333, 1).fillCircle(70, 700, 40);
+    soundCircle.depth = 3;
 
     // 音声アイコン
-    const sound_icon = this.add.sprite(70, 700, "sound");
-    let sound_status = 1;
-    sound_icon.depth = 4;
-    sound_icon.setInteractive();
+    const soundIcon = this.add.sprite(70, 700, "sound");
+    let soundStatus = 1;
+    soundIcon.depth = 4;
+    soundIcon.setInteractive();
 
     // 音楽
     // ゲームBGM
@@ -48,19 +48,19 @@ export default class Hitsuji_game extends Phaser.Scene {
     fx.allowMultiple = false;
     fx.setLoop(true);
     // fx.play();
-    // console.log(sound_status);
+    // console.log(soundStatus);
 
-    sound_icon.on(
+    soundIcon.on(
       "pointerdown",
       () => {
-        if (sound_status === 0) {
+        if (soundStatus === 0) {
           fx.play();
-          sound_status = 1;
-          // console.log(sound_status);
-        } else if (sound_status === 1) {
+          soundStatus = 1;
+          // console.log(soundStatus);
+        } else if (soundStatus === 1) {
           fx.stop();
-          sound_status = 0;
-          // console.log(sound_status);
+          soundStatus = 0;
+          // console.log(soundStatus);
         }
       },
       this

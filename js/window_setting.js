@@ -1,4 +1,4 @@
-export default class Window_setting extends Phaser.Scene {
+export default class WindowSetting extends Phaser.Scene {
   constructor() {
     super({ key: "window", active: true });
   }
@@ -13,7 +13,7 @@ export default class Window_setting extends Phaser.Scene {
         .fillRoundedRect(352, 302, 320, 160, 5, 5).depth = 0;
 
       // --- テキスト---
-      const screen_text = this.add.text(
+      const screenText = this.add.text(
         388,
         328,
         "フルスクリーン表示しますか？",
@@ -24,9 +24,9 @@ export default class Window_setting extends Phaser.Scene {
         }
       );
 
-      screen_text.setPadding(4).depth = 1;
+      screenText.setPadding(4).depth = 1;
 
-      const alert_text = this.add.text(
+      const alertText = this.add.text(
         388,
         421,
         "※フルスクリーン表示にしないとゲームが開始されません",
@@ -36,39 +36,39 @@ export default class Window_setting extends Phaser.Scene {
         }
       );
 
-      alert_text.setPadding(4).depth = 1;
+      alertText.setPadding(4).depth = 1;
 
       // --- ボタン---
 
       // --- ✖ボタン・イベント ---
-      const cross_button = this.add.text(652, 310, "✖", {
+      const crossButton = this.add.text(652, 310, "✖", {
         fontSize: "16px",
         fill: "#707070",
       });
 
-      cross_button.setInteractive().on(
+      crossButton.setInteractive().on(
         "pointerdown",
         () => {
           this.scene.start("window");
         },
         this
       );
-      cross_button.depth = 1;
+      crossButton.depth = 1;
 
       // ---「いいえ」ボタン/テキスト---
-      const cancel_graphics = this.add.graphics();
+      const cancelGraphics = this.add.graphics();
 
-      cancel_graphics
+      cancelGraphics
         .fillStyle(0x707070, 1)
         .fillRoundedRect(373, 363, 137, 40, 5).depth = 1;
 
-      const cancel_text = this.add.text(422, 375, "いいえ", {
+      const cancelText = this.add.text(422, 375, "いいえ", {
         fontSize: "16px",
         fill: "#ffffff",
       });
 
-      cancel_text.depth = 2;
-      cancel_text.setInteractive().on(
+      cancelText.depth = 2;
+      cancelText.setInteractive().on(
         "pointerdown",
         () => {
           this.cameras.main.fadeOut(500);
@@ -80,22 +80,22 @@ export default class Window_setting extends Phaser.Scene {
       );
 
       // 「はい」ボタン/テキスト
-      const dicision_graphics = this.add.graphics();
+      const dicisionGraphics = this.add.graphics();
 
-      dicision_graphics
+      dicisionGraphics
         .fillStyle(0x32b65e, 1)
         .fillRoundedRect(515, 363, 137, 40, 5).depth = 1;
 
-      const dicision_text = this.add.text(571, 375, "はい", {
+      const dicisionText = this.add.text(571, 375, "はい", {
         fontSize: "16px",
         fill: "#ffffff",
       });
 
-      dicision_text.depth = 2;
-      dicision_text.setInteractive().on(
+      dicisionText.depth = 2;
+      dicisionText.setInteractive().on(
         "pointerdown",
         () => {
-          dicision_text.removeInteractive();
+          dicisionText.removeInteractive();
           this.cameras.main.fadeOut(500);
           this.cameras.main.once("camerafadeoutcomplete", () => {
             this.scene.start("logo");

@@ -1,4 +1,4 @@
-export default class Game_result extends Phaser.Scene {
+export default class GameResult extends Phaser.Scene {
   constructor() {
     super({ key: "game_result", actisve: false });
   }
@@ -26,14 +26,14 @@ export default class Game_result extends Phaser.Scene {
     // 画像表示
 
     // 雲３つ
-    const cloud_1 = this.add.image(100, 100, "cloud");
-    cloud_1.depth = 1;
+    const cloud1 = this.add.image(100, 100, "cloud");
+    cloud1.depth = 1;
 
-    // const cloud_2 = this.add.image(600, 150, 'cloud');
-    // cloud_2.depth = 1;
+    // const cloud2 = this.add.image(600, 150, 'cloud');
+    // cloud2.depth = 1;
 
-    const cloud_3 = this.add.image(900, 120, "cloud");
-    cloud_3.depth = 1;
+    const cloud3 = this.add.image(900, 120, "cloud");
+    cloud3.depth = 1;
 
     // 木
     this.depth = 0;
@@ -41,29 +41,29 @@ export default class Game_result extends Phaser.Scene {
     tree.depth = 1;
 
     // 地面
-    const bg_image = this.add.image(510, 682, "bg");
-    bg_image.depth = bg_image.y;
-    bg_image.depth = 2;
+    const bgImage = this.add.image(510, 682, "bg");
+    bgImage.depth = bgImage.y;
+    bgImage.depth = 2;
 
     // もぐら(仮)
     const mogura = this.add.image(750, 530, "top_mogura");
     mogura.depth = 1;
 
     // 背景描画
-    const bg_game_menu = this.add.graphics();
-    bg_game_menu.fillStyle(0xebfdff, 1).fillRect(0, 0, 1024, 768);
+    const bgGameMenu = this.add.graphics();
+    bgGameMenu.fillStyle(0xebfdff, 1).fillRect(0, 0, 1024, 768);
 
     // 音声アイコン枠描画
-    const sound_circle = this.add.graphics();
-    sound_circle.fillStyle(0x333333, 1).fillCircle(70, 700, 40);
-    sound_circle.depth = 3;
+    const soundCircle = this.add.graphics();
+    soundCircle.fillStyle(0x333333, 1).fillCircle(70, 700, 40);
+    soundCircle.depth = 3;
 
     // 音声アイコン
 
-    const sound_icon = this.add.sprite(70, 700, "sound");
-    // let sound_status = 1;
-    sound_icon.depth = 4;
-    sound_icon.setInteractive();
+    const soundIcon = this.add.sprite(70, 700, "sound");
+    // let soundStatus = 1;
+    soundIcon.depth = 4;
+    soundIcon.setInteractive();
 
     // リザルト表示
 
@@ -91,21 +91,21 @@ export default class Game_result extends Phaser.Scene {
     // 終了後ゲームメニュー
 
     // トップへ戻るボタン
-    const top_link_btn = this.add.graphics();
+    const topLinkBtn = this.add.graphics();
 
-    // top_link_btn
+    // topLinkBtn
     //     .lineStyle(5, 0x645246)
     //     .fillStyle(0xffffff, 1)
     //     .fillRoundedRect(338, 184, 350, 90, 45)
     //     .strokePath()
     //     .depth = 1;
 
-    const top_link_text = this.add.text(512, 200, "トップへ戻る", {
+    const topLinkText = this.add.text(512, 200, "トップへ戻る", {
       fontSize: "32px",
       fill: "#333333",
     });
 
-    top_link_text
+    topLinkText
       .setInteractive()
       .setPadding(4)
       .on(
@@ -118,20 +118,20 @@ export default class Game_result extends Phaser.Scene {
       ).depth = 2;
 
     // もう一度プレイするボタン
-    // let retry_btn = this.add.graphics();
-    //     retry_btn
+    // let retryButton = this.add.graphics();
+    //     retryButton
     //     .lineStyle(5, 0x645246)
     //     .fillStyle(0xffffff, 1)
     //     .fillRoundedRect(338, 184, 350, 90, 45)
     //     .strokePath()
     //     .depth = 1;
 
-    // let top_link_text = this.add.text(385,130, "もう一度プレイする", {
+    // let topLinkText = this.add.text(385,130, "もう一度プレイする", {
     //     fontSize: '32px',
     //     fill: '#333333'
     // })
 
-    // fnd_diff_text
+    // fndDiffText
     //     .setInteractive()
     //     .setPadding(4)
     //     .on('pointerdown',()=>{
@@ -139,23 +139,23 @@ export default class Game_result extends Phaser.Scene {
     //         this.scene.start('game_setting');
     //         console.log("hoge");
     //     },this);
-    //     fnd_diff_text.depth = 2;
+    //     fndDiffText.depth = 2;
 
     // 終了ボタン
-    // let top_link_btn = this.add.graphics();
-    //     top_link_btn
+    // let topLinkBtn = this.add.graphics();
+    //     topLinkBtn
     //     .lineStyle(5, 0x645246)
     //     .fillStyle(0xffffff, 1)
     //     .fillRoundedRect(338, 184, 350, 90, 45)
     //     .strokePath()
     //     .depth = 1;
 
-    // let top_link_text = this.add.text(385,130, "ゲームを終了する", {
+    // let topLinkText = this.add.text(385,130, "ゲームを終了する", {
     //     fontSize: '32px',
     //     fill: '#333333'
     // })
 
-    // fnd_diff_text
+    // fndDiffText
     //     .setInteractive()
     //     .setPadding(4)
     //     .on('pointerdown',()=>{
@@ -163,6 +163,6 @@ export default class Game_result extends Phaser.Scene {
     //         this.scene.start('window_setting');
     //         console.log("hoge");
     //     },this);
-    //     fnd_diff_text.depth = 2;
+    //     fndDiffText.depth = 2;
   }
 }

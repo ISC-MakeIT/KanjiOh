@@ -1,4 +1,4 @@
-export default class Open_logo extends Phaser.Scene {
+export default class OpenLogo extends Phaser.Scene {
   constructor() {
     super({ key: "logo", active: false });
   }
@@ -12,8 +12,8 @@ export default class Open_logo extends Phaser.Scene {
     // 画像表示
 
     // logo画像
-    const logo_image = this.add.image(500, 400, "logo");
-    logo_image.depth = 1;
+    const logoImage = this.add.image(500, 400, "logo");
+    logoImage.depth = 1;
 
     // fadein/out
 
@@ -27,7 +27,7 @@ export default class Open_logo extends Phaser.Scene {
     });
 
     this.tweens.add({
-      targets: logo_image,
+      targets: logoImage,
       ease: "Sine.easeInOut",
       yoyo: true,
       repeat: -1,

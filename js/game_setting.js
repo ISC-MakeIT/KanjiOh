@@ -1,4 +1,4 @@
-export default class Game_setting extends Phaser.Scene {
+export default class GameSetting extends Phaser.Scene {
   constructor() {
     // super("game_setting");
     super({ key: "game_setting", active: false });
@@ -23,19 +23,19 @@ export default class Game_setting extends Phaser.Scene {
     // --- ボタン---
 
     // --- ✖ボタン・イベント ---
-    const cross_button = this.add.text(967, 36, "✖", {
+    const crossButton = this.add.text(967, 36, "✖", {
       fontSize: "24px",
       fill: "#ffffff",
     });
 
-    cross_button.setInteractive().on(
+    crossButton.setInteractive().on(
       "pointerdown",
       () => {
         this.scene.start("game_menu");
       },
       this
     );
-    cross_button.depth = 1;
+    crossButton.depth = 1;
 
     // 見出し
 
@@ -74,25 +74,25 @@ export default class Game_setting extends Phaser.Scene {
     // ボタン
 
     // サイズ
-    // let size_btn1 = this.add.graphics();
-    // let size_btn2 = this.add.graphics();
-    // let size_btn3 = this.add.graphics();
+    // let sizeButton1 = this.add.graphics();
+    // let sizeButton2 = this.add.graphics();
+    // let sizeButton3 = this.add.graphics();
 
-    // size_btn1
+    // sizeButton1
     //     .lineStyle(3, 0x645246)
     //     .fillStyle(0xffffff, 1)
     //     .fillRoundedRect(290, 216, 134, 56, 30)
     //     .strokePath()
     //     .depth = 0;
 
-    // size_btn2
+    // sizeButton2
     //     .lineStyle(3, 0x645246)
     //     .fillStyle(0xffffff, 1)
     //     .fillRoundedRect(448, 216, 134, 56, 30)
     //     .strokePath()
     //     .depth = 0;
 
-    // size_btn3
+    // sizeButton3
     //     .lineStyle(3, 0x645246)
     //     .fillStyle(0xffffff, 1)
     //     .fillRoundedRect(606, 216, 134, 56, 30)
@@ -101,31 +101,31 @@ export default class Game_setting extends Phaser.Scene {
 
     // 音声
     // 音声アイコン枠描画
-    const sound_circle = this.add.graphics();
-    sound_circle.fillStyle(0x333333, 1).fillCircle(70, 700, 40);
-    sound_circle.depth = 0;
+    const soundCircle = this.add.graphics();
+    soundCircle.fillStyle(0x333333, 1).fillCircle(70, 700, 40);
+    soundCircle.depth = 0;
 
     // 音声アイコン
-    const sound_icon = this.add.sprite(70, 700, "sound");
-    // let sound_status = 1;
-    sound_icon.depth = 1;
-    sound_icon.setInteractive();
+    const soundIcon = this.add.sprite(70, 700, "sound");
+    // let soundStatus = 1;
+    soundIcon.depth = 1;
+    soundIcon.setInteractive();
 
     // 音楽
     // let fx = this.sound.add('top_bgm');
     // fx.allowMultiple = false;
     // fx.play();
-    // console.log(sound_status);
+    // console.log(soundStatus);
 
-    // sound_icon.on('pointerdown',()=>{
-    //     if(sound_status === 0){
+    // soundIcon.on('pointerdown',()=>{
+    //     if(soundStatus === 0){
     //         fx.play();
-    //         sound_status = 1;
-    //         console.log(sound_status);
-    //     }else if(sound_status === 1){
+    //         soundStatus = 1;
+    //         console.log(soundStatus);
+    //     }else if(soundStatus === 1){
     //         fx.stop();
-    //         sound_status = 0;
-    //         console.log(sound_status);
+    //         soundStatus = 0;
+    //         console.log(soundStatus);
     //     }
     // },this);
 
@@ -182,20 +182,20 @@ export default class Game_setting extends Phaser.Scene {
     this.select();
 
     // 羊の中に～ボタン/テキスト
-    const start_btn = this.add.graphics();
+    const startButton = this.add.graphics();
 
-    start_btn
+    startButton
       .lineStyle(5, 0x645246)
       .fillStyle(0x32b65e, 1)
       .fillRoundedRect(360, 642, 368, 80, 40)
       .strokePath().depth = 0;
 
-    const game_start_text = this.add.text(437, 666, "ゲームスタート", {
+    const gameStartText = this.add.text(437, 666, "ゲームスタート", {
       fontSize: "32px",
       fill: "#ffffff",
     });
 
-    game_start_text
+    gameStartText
       .setPadding(4)
       .setInteractive()
       .on(
