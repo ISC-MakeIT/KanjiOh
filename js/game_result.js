@@ -113,7 +113,6 @@ export default class Game_result extends Phaser.Scene {
         () => {
           fx.stop();
           this.scene.start("game_menu");
-          console.log("hoge");
         },
         this
       ).depth = 2;

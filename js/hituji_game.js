@@ -18,7 +18,6 @@ export default class Hitsuji_game extends Phaser.Scene {
   }
 
   init(data) {
-    console.log(data);
     this.mode = data.mode;
     this.schoolYear = data.schoolYear;
     this.sizeY = data.size[0] - 0;

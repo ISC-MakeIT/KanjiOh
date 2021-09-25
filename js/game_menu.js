@@ -106,7 +106,6 @@ export default class Game_menu extends Phaser.Scene {
         () => {
           fx.stop();
           this.scene.start("game_setting");
-          console.log("hoge");
         },
         this
       );
