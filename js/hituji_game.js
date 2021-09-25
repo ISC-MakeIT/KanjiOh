@@ -88,7 +88,7 @@ export default class Hitsuji_game extends Phaser.Scene {
       this.timerComponent = this.add.text(
         310,
         54,
-        `残り時間：${  60 - this.timer  }秒`,
+        `残り時間：${60 - this.timer}秒`,
         {
           fill: 0x333333,
           fontSize: 50,
@@ -96,19 +96,14 @@ export default class Hitsuji_game extends Phaser.Scene {
         }
       );
     } else if (this.mode === "timeAttack") {
-      this.timerComponent = this.add.text(
-        10,
-        10,
-        `残り時間：${  this.timer  }秒`,
-        {
-          fontSize: 50,
-          fontFamily: "Arial",
-        }
-      );
+      this.timerComponent = this.add.text(10, 10, `残り時間：${this.timer}秒`, {
+        fontSize: 50,
+        fontFamily: "Arial",
+      });
     }
 
     this.answerComponent = this.add
-      .text(360, 671, `正解数:${  this.answerCounter  }問`, {
+      .text(360, 671, `正解数:${this.answerCounter}問`, {
         fill: 0x333333,
         fontSize: 50,
         fontFamily: "Arial",
