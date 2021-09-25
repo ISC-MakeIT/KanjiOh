@@ -216,5 +216,4 @@ export default class GameMenu extends Phaser.Scene {
       tgtherText.depth = 2;
     }, 3000);
   }
-
 }

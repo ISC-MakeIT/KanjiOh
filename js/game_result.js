@@ -91,6 +91,7 @@ export default class GameResult extends Phaser.Scene {
     // 終了後ゲームメニュー
 
     // トップへ戻るボタン
+    // eslint-disable-next-line no-unused-vars
     const topLinkBtn = this.add.graphics();
 
     // topLinkBtn
