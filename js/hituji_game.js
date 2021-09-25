@@ -1,4 +1,4 @@
-import { kanjiList } from "./kanjilist.js";
+import { kanjiList } from "./kanjilist";
 
 export default class Hitsuji_game extends Phaser.Scene {
   constructor() {

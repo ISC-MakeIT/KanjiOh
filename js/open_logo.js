@@ -1,4 +1,4 @@
-class Open_logo extends Phaser.Scene {
+export default class Open_logo extends Phaser.Scene {
   constructor() {
     super({ key: "logo", active: false });
   }

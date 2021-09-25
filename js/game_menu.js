@@ -176,7 +176,8 @@ export default class Game_menu extends Phaser.Scene {
           fontSize: "32px",
           fill: "#ffffff",
         })
-        .setPadding(4).depth = 2;
+        .setPadding(4);
+      mny_lng_text.depth = 2;
 
       // 真剣衰弱
       memory_gm_btn
@@ -193,7 +194,8 @@ export default class Game_menu extends Phaser.Scene {
           fontSize: "32px",
           fill: "#ffffff",
         })
-        .setPadding(4).depth = 2;
+        .setPadding(4);
+      memory_text.depth = 2;
 
       // 仲間で集まれ
       tgther_frnd_btn
@@ -210,7 +212,8 @@ export default class Game_menu extends Phaser.Scene {
           fontSize: "32px",
           fill: "#ffffff",
         })
-        .setPadding(4).depth = 2;
+        .setPadding(4);
+      tgther_text.depth = 2;
     }, 3000);
   }
 

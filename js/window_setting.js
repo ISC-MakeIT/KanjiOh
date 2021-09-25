@@ -1,4 +1,4 @@
-class Window_setting extends Phaser.Scene {
+export default class Window_setting extends Phaser.Scene {
   constructor() {
     super({ key: "window", active: true });
   }
