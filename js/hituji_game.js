@@ -66,8 +66,8 @@ export default class Hitsuji_game extends Phaser.Scene {
       this
     );
 
-    for (let y = 0; y < this.sizeY; y++) {
-      for (let x = 0; x < this.sizeX; x++) {
+    for (let y = 0; y < this.sizeY; y += 1) {
+      for (let x = 0; x < this.sizeX; x += 1) {
         this.kanjiComponents.push([]);
         this.kanjiComponents[y].push(
           this.add
@@ -118,7 +118,7 @@ export default class Hitsuji_game extends Phaser.Scene {
   }
 
   countTime() {
-    this.timer++;
+    this.timer += 1;
     this.check();
 
     if (this.mode === "timeLimit") {
@@ -146,7 +146,7 @@ export default class Hitsuji_game extends Phaser.Scene {
   shuffleKanjiList() {
     let i = this.kanjiList.length;
     while (i > 1) {
-      i--;
+      i -= 1;
       const j = Math.floor(Math.random() * i);
       [this.kanjiList[i], this.kanjiList[j]] = [
         this.kanjiList[j],
@@ -164,8 +164,8 @@ export default class Hitsuji_game extends Phaser.Scene {
     const correct = this.sound.add("correct_se");
     const but = this.sound.add("but_se");
 
-    for (let y = 0; y < this.sizeY; y++) {
-      for (let x = 0; x < this.sizeX; x++) {
+    for (let y = 0; y < this.sizeY; y += 1) {
+      for (let x = 0; x < this.sizeX; x += 1) {
         this.kanjiComponents[y][x].off("pointerdown");
 
         if (y === answerY && x === answerX) {
@@ -173,7 +173,7 @@ export default class Hitsuji_game extends Phaser.Scene {
           this.kanjiComponents[y][x].once("pointerdown", () => {
             correct.play();
 
-            this.answerCounter++;
+            this.answerCounter += 1;
             this.answerComponent.setText(`正解数:${this.answerCounter}問`);
             this.check();
             this.updateKanji();
