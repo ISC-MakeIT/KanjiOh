@@ -29,9 +29,6 @@ export default class GameResult extends Phaser.Scene {
     const cloud1 = this.add.image(100, 100, "cloud");
     cloud1.depth = 1;
 
-    // const cloud2 = this.add.image(600, 150, 'cloud');
-    // cloud2.depth = 1;
-
     const cloud3 = this.add.image(900, 120, "cloud");
     cloud3.depth = 1;
 
@@ -61,7 +58,6 @@ export default class GameResult extends Phaser.Scene {
     // 音声アイコン
 
     const soundIcon = this.add.sprite(70, 700, "sound");
-    // let soundStatus = 1;
     soundIcon.depth = 4;
     soundIcon.setInteractive();
 
@@ -94,13 +90,6 @@ export default class GameResult extends Phaser.Scene {
     // eslint-disable-next-line no-unused-vars
     const topLinkBtn = this.add.graphics();
 
-    // topLinkBtn
-    //     .lineStyle(5, 0x645246)
-    //     .fillStyle(0xffffff, 1)
-    //     .fillRoundedRect(338, 184, 350, 90, 45)
-    //     .strokePath()
-    //     .depth = 1;
-
     const topLinkText = this.add.text(512, 200, "トップへ戻る", {
       fontSize: "32px",
       fill: "#333333",
@@ -117,53 +106,5 @@ export default class GameResult extends Phaser.Scene {
         },
         this
       ).depth = 2;
-
-    // もう一度プレイするボタン
-    // let retryButton = this.add.graphics();
-    //     retryButton
-    //     .lineStyle(5, 0x645246)
-    //     .fillStyle(0xffffff, 1)
-    //     .fillRoundedRect(338, 184, 350, 90, 45)
-    //     .strokePath()
-    //     .depth = 1;
-
-    // let topLinkText = this.add.text(385,130, "もう一度プレイする", {
-    //     fontSize: '32px',
-    //     fill: '#333333'
-    // })
-
-    // fndDiffText
-    //     .setInteractive()
-    //     .setPadding(4)
-    //     .on('pointerdown',()=>{
-    //         fx.stop();
-    //         this.scene.start('game_setting');
-    //         console.log("hoge");
-    //     },this);
-    //     fndDiffText.depth = 2;
-
-    // 終了ボタン
-    // let topLinkBtn = this.add.graphics();
-    //     topLinkBtn
-    //     .lineStyle(5, 0x645246)
-    //     .fillStyle(0xffffff, 1)
-    //     .fillRoundedRect(338, 184, 350, 90, 45)
-    //     .strokePath()
-    //     .depth = 1;
-
-    // let topLinkText = this.add.text(385,130, "ゲームを終了する", {
-    //     fontSize: '32px',
-    //     fill: '#333333'
-    // })
-
-    // fndDiffText
-    //     .setInteractive()
-    //     .setPadding(4)
-    //     .on('pointerdown',()=>{
-    //         fx.stop();
-    //         this.scene.start('window_setting');
-    //         console.log("hoge");
-    //     },this);
-    //     fndDiffText.depth = 2;
   }
 }

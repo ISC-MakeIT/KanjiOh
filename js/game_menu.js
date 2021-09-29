@@ -64,7 +64,6 @@ export default class GameMenu extends Phaser.Scene {
     const fx = this.sound.add("top_bgm");
     fx.allowMultiple = false;
     fx.play();
-    // console.log(soundStatus);
 
     soundIcon.on(
       "pointerdown",
@@ -72,11 +71,9 @@ export default class GameMenu extends Phaser.Scene {
         if (soundStatus === 0) {
           fx.play();
           soundStatus = 1;
-          // console.log(soundStatus);
         } else if (soundStatus === 1) {
           fx.stop();
           soundStatus = 0;
-          // console.log(soundStatus);
         }
       },
       this
@@ -168,7 +165,6 @@ export default class GameMenu extends Phaser.Scene {
         .fillStyle(0x32b65e, 1)
         .fillRoundedRect(30, 230, 350, 90, 45)
         .strokePath();
-      // mnyLngButton.depth = 1;
 
       mnyLngText.destroy();
       mnyLngText = this.add
@@ -186,8 +182,6 @@ export default class GameMenu extends Phaser.Scene {
         .fillRoundedRect(30, 360, 350, 90, 45)
         .strokePath();
 
-      // memoryGmButton.depth = 1;
-
       memoryText.destroy();
       memoryText = this.add
         .text(150, 390, "作成中", {
@@ -203,8 +197,6 @@ export default class GameMenu extends Phaser.Scene {
         .fillStyle(0x32b65e, 1)
         .fillRoundedRect(30, 490, 350, 90, 45)
         .strokePath();
-
-      // tgtherFriendButton.depth = 1;
 
       tgtherText.destroy();
       tgtherText = this.add
