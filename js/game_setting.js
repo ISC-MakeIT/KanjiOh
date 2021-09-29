@@ -74,30 +74,6 @@ export default class GameSetting extends Phaser.Scene {
     // ボタン
 
     // サイズ
-    // let sizeButton1 = this.add.graphics();
-    // let sizeButton2 = this.add.graphics();
-    // let sizeButton3 = this.add.graphics();
-
-    // sizeButton1
-    //     .lineStyle(3, 0x645246)
-    //     .fillStyle(0xffffff, 1)
-    //     .fillRoundedRect(290, 216, 134, 56, 30)
-    //     .strokePath()
-    //     .depth = 0;
-
-    // sizeButton2
-    //     .lineStyle(3, 0x645246)
-    //     .fillStyle(0xffffff, 1)
-    //     .fillRoundedRect(448, 216, 134, 56, 30)
-    //     .strokePath()
-    //     .depth = 0;
-
-    // sizeButton3
-    //     .lineStyle(3, 0x645246)
-    //     .fillStyle(0xffffff, 1)
-    //     .fillRoundedRect(606, 216, 134, 56, 30)
-    //     .strokePath()
-    //     .depth = 0;
 
     // 音声
     // 音声アイコン枠描画
@@ -111,25 +87,6 @@ export default class GameSetting extends Phaser.Scene {
     soundIcon.depth = 1;
     soundIcon.setInteractive();
 
-    // 音楽
-    // let fx = this.sound.add('top_bgm');
-    // fx.allowMultiple = false;
-    // fx.play();
-    // console.log(soundStatus);
-
-    // soundIcon.on('pointerdown',()=>{
-    //     if(soundStatus === 0){
-    //         fx.play();
-    //         soundStatus = 1;
-    //         console.log(soundStatus);
-    //     }else if(soundStatus === 1){
-    //         fx.stop();
-    //         soundStatus = 0;
-    //         console.log(soundStatus);
-    //     }
-    // },this);
-
-    // ------------------------------------------------------------------
     this.sizeButtons["2x4"] = this.add.text(330, 227, "2×4");
 
     this.sizeButtons["3x6"] = this.add.text(488, 227, "3×6");

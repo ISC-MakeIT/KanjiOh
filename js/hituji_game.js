@@ -47,8 +47,6 @@ export default class HitsujiGame extends Phaser.Scene {
     const fx = this.sound.add("game_bgm");
     fx.allowMultiple = false;
     fx.setLoop(true);
-    // fx.play();
-    // console.log(soundStatus);
 
     soundIcon.on(
       "pointerdown",
@@ -56,11 +54,9 @@ export default class HitsujiGame extends Phaser.Scene {
         if (soundStatus === 0) {
           fx.play();
           soundStatus = 1;
-          // console.log(soundStatus);
         } else if (soundStatus === 1) {
           fx.stop();
           soundStatus = 0;
-          // console.log(soundStatus);
         }
       },
       this
