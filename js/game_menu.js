@@ -104,70 +104,22 @@ export default class GameMenu extends Phaser.Scene {
           fx.stop();
           this.scene.start("game_setting");
         },
-        this
-      );
+        this);
+    
     fndDiffText.depth = 2;
-
-    // 多言語文字ボタン/テキスト
-    const mnyLngButton = this.add.graphics();
-    mnyLngButton
-      .lineStyle(5, 0x645246)
-      .fillStyle(0xffffff, 1)
-      .fillRoundedRect(30, 230, 350, 90, 45)
-      .strokePath().depth = 1;
-
-    let mnyLngText = this.add.text(120, 260, "多言語文字", {
-      fontSize: "32px",
-      fill: "#333333",
-    });
-
-    mnyLngText.setPadding(4).depth = 2;
-
-    // 神経衰弱ボタン/テキスト
-    const memoryGmButton = this.add.graphics();
-    memoryGmButton
-      .lineStyle(5, 0x645246)
-      .fillStyle(0xffffff, 1)
-      .fillRoundedRect(30, 360, 350, 90, 45)
-      .strokePath();
-    memoryGmButton.depth = 1;
-
-    let memoryText = this.add.text(140, 390, "神経衰弱", {
-      fontSize: "32px",
-      fill: "#333333",
-    });
-
-    memoryText.setPadding(4).depth = 2;
-
-    // 仲間で集まれボタン/テキスト
-    const tgtherFriendButton = this.add.graphics();
-    tgtherFriendButton
-      .lineStyle(5, 0x645246)
-      .fillStyle(0xffffff, 1)
-      .fillRoundedRect(30, 490, 350, 90, 45)
-      .strokePath();
-    tgtherFriendButton.depth = 1;
-
-    // 仲間で集まれ～テキスト
-    let tgtherText = this.add.text(100, 520, "仲間で集まれ", {
-      fontSize: "32px",
-      fill: "#333333",
-    });
-
-    tgtherText.setPadding(4).depth = 2;
-
-    setTimeout(() => {
-      // 作成中に変更
+        
+    // 作成中にする
 
       // 多言語
+      const mnyLngButton = this.add.graphics();
       mnyLngButton
         .lineStyle(5, 0x645246)
         .fillStyle(0x32b65e, 1)
         .fillRoundedRect(30, 230, 350, 90, 45)
         .strokePath();
-
-      mnyLngText.destroy();
-      mnyLngText = this.add
+      mnyLngButton.depth = 1;
+   
+      const mnyLngText = this.add
         .text(150, 260, "作成中", {
           fontSize: "32px",
           fill: "#ffffff",
@@ -175,15 +127,16 @@ export default class GameMenu extends Phaser.Scene {
         .setPadding(4);
       mnyLngText.depth = 2;
 
-      // 真剣衰弱
+      // 神経衰弱
+      const memoryGmButton = this.add.graphics();
       memoryGmButton
         .lineStyle(5, 0x645246)
         .fillStyle(0x32b65e, 1)
         .fillRoundedRect(30, 360, 350, 90, 45)
         .strokePath();
+      memoryGmButton.depth = 1;
 
-      memoryText.destroy();
-      memoryText = this.add
+      const memoryText = this.add
         .text(150, 390, "作成中", {
           fontSize: "32px",
           fill: "#ffffff",
@@ -192,20 +145,21 @@ export default class GameMenu extends Phaser.Scene {
       memoryText.depth = 2;
 
       // 仲間で集まれ
+      const tgtherFriendButton = this.add.graphics();
       tgtherFriendButton
-        .lineStyle(5, 0x645246)
-        .fillStyle(0x32b65e, 1)
-        .fillRoundedRect(30, 490, 350, 90, 45)
-        .strokePath();
-
-      tgtherText.destroy();
-      tgtherText = this.add
+          .lineStyle(5, 0x645246)
+          .fillStyle(0x32b65e, 1)
+          .fillRoundedRect(30, 490, 350, 90, 45)
+          .strokePath();
+      tgtherFriendButton.depth = 1;
+  
+      const tgtherText = this.add
         .text(150, 520, "作成中", {
-          fontSize: "32px",
-          fill: "#ffffff",
+            fontSize: "32px",
+            fill: "#ffffff",
         })
-        .setPadding(4);
+        .setPadding(4)
+      
       tgtherText.depth = 2;
-    }, 3000);
   }
 }
