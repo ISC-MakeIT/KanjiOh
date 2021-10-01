@@ -9,14 +9,14 @@ export default class HitsujiGame extends Phaser.Scene {
     this.answerCounter = 0;
     this.wrongFlag = false;
   }
-
+  
   preload() {
     // bgm
     this.load.audio("game_bgm", "../audio/timer.mp3");
     this.load.audio("correct_se", "../audio/correct.mp3");
     this.load.audio("but_se", "../audio/but_se.mp3");
   }
-
+  
   init(data) {
     this.mode = data.mode;
     this.schoolYear = data.schoolYear;
@@ -24,38 +24,38 @@ export default class HitsujiGame extends Phaser.Scene {
     this.sizeX = data.size[2] - 0;
     this.kanjiList = kanjiList[data.schoolYear];
   }
-
+  
   create() {
     // 背景
     const bgGameMenu = this.add.graphics();
     bgGameMenu.fillStyle(0xeaeaea, 1).fillRect(0, 0, 1024, 768);
     bgGameMenu.depth = 0;
-
+    
     // 音声アイコン枠描画
     const soundCircle = this.add.graphics();
     soundCircle.fillStyle(0x333333, 1).fillCircle(70, 700, 40);
     soundCircle.depth = 3;
-
+    
     // 音声アイコン
     const soundIcon = this.add.sprite(70, 700, "sound");
     let soundStatus = 1;
     soundIcon.depth = 4;
     soundIcon.setInteractive();
-
+    
     // 音楽
     // ゲームBGM
-    const fx = this.sound.add("game_bgm");
-    fx.allowMultiple = false;
-    fx.setLoop(true);
-
+    this.fx = this.sound.add("game_bgm");
+    this.fx.allowMultiple = false;
+    this.fx.setLoop(true);
+    
     soundIcon.on(
       "pointerdown",
       () => {
         if (soundStatus === 0) {
-          fx.play();
+          this.fx.play();
           soundStatus = 1;
         } else if (soundStatus === 1) {
-          fx.stop();
+          this.fx.stop();
           soundStatus = 0;
         }
       },
@@ -125,13 +125,12 @@ export default class HitsujiGame extends Phaser.Scene {
   }
 
   check() {
-    const fx = this.sound.add("game_bgm");
     if (
       (this.mode === "timeLimit" && this.timer >= 60) ||
       (this.mode === "timeAttack" && this.answerCounter >= 10) ||
       (this.mode === "suddenDeath" && this.wrongFlag)
     ) {
-      fx.stop();
+      this.fx.stop();
       this.scene.start("game_result", {
         time: this.timer,
         answers: this.answerCounter,
