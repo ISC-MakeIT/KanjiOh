@@ -2,16 +2,16 @@ export default class WindowSetting extends Phaser.Scene {
   constructor() {
     super({ key: "window", active: true });
   }
-
+  
   create() {
     setTimeout(() => {
       // --- Window設定 ---
       const graphics = this.add.graphics();
-
+      
       graphics
-        .fillStyle(0xffffff, 1)
-        .fillRoundedRect(352, 302, 320, 160, 5, 5).depth = 0;
-
+      .fillStyle(0xffffff, 1)
+      .fillRoundedRect(352, 302, 320, 160, 5, 5).depth = 0;
+      
       // --- テキスト---
       const screenText = this.add.text(
         388,
@@ -24,8 +24,19 @@ export default class WindowSetting extends Phaser.Scene {
         }
       );
 
-      screenText.setPadding(4).depth = 1;
-
+      
+      screenText
+        .setInteractive()
+        .on(
+          "pointerdown",
+          () => {
+              this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+              this.scale.pageAlignHorisontally = true; 
+              this.scale.pageAlignVertically = true;
+            }
+          )
+        .setPadding(4).depth = 1;
+            
       const alertText = this.add.text(
         388,
         421,

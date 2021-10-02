@@ -155,17 +155,28 @@ export default class GameSetting extends Phaser.Scene {
     gameStartText
       .setPadding(4)
       .setInteractive()
-      .on(
-        "pointerdown",
-        () => {
+      .on("pointerdown",() => {
           this.scene.start("hituji_game", {
             size: this.size,
             mode: this.mode,
             schoolYear: this.schoolYear,
           });
-        },
-        this
-      ).depth = 1;
+      },this)
+      .depth = 1;
+      
+    const howPlay = this.add.text(700, 666, "遊び方", {
+      fontSize: "32px",
+      fill: "#ffffff",
+    });
+
+    howPlay
+      .setInteractive()
+      .on("pointerdown",() => {
+          this.scene.start("how_play")
+      },this)
+      .depth = 1;
+
+
   }
 
   select() {

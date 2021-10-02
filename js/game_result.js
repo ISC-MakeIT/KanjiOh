@@ -73,14 +73,14 @@ export default class GameResult extends Phaser.Scene {
       .text(512, 100, `正解数:${this.answers}`, {
         fill: 0x333333,
         fontFamily: "Arial",
-        fontSize: 50,
+        fontSize: "50px",
       })
       .setOrigin(0.5, 0);
     this.add
       .text(512, 200, `タイム:${this.timer}`, {
         fill: 0x333333,
         fontFamily: "Arial",
-        fontSize: 50,
+        fontSize: "50px",
       })
       .setOrigin(0.5, 0);
 
@@ -88,23 +88,19 @@ export default class GameResult extends Phaser.Scene {
 
     // トップへ戻るボタン
     // eslint-disable-next-line no-unused-vars
-    const topLinkBtn = this.add.graphics();
-
-    const topLinkText = this.add.text(512, 200, "トップへ戻る", {
-      fontSize: "32px",
-      fill: "#333333",
-    });
-
-    topLinkText
+    const topButton = this.add
+      .text(512, 320, "トップへ戻る", {
+        fontSize: "50px",
+        fill: "#333333",
+      });
+    topButton
+      .setPadding(10)
+      .setOrigin(0.5, 0)
       .setInteractive()
-      .setPadding(4)
-      .on(
-        "pointerdown",
-        () => {
+      .on("pointerdown",() => {
           fx.stop();
           this.scene.start("game_menu");
-        },
-        this
-      ).depth = 2;
+      },this)
+      .depth = 2;
   }
 }

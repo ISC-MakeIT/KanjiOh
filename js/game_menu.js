@@ -5,12 +5,12 @@ export default class GameMenu extends Phaser.Scene {
 
   preload() {
     // メニュー画面に出てくる画像のロード
-
     this.load.image("sound", "../img/sound.png");
     this.load.image("bg", "../img/bg.png");
     this.load.image("cloud", "../img/game_cloud.png");
     this.load.image("tree", "../img/tree.png");
     this.load.image("top_mogura", "../img/mogura.png");
+
     // bgm
     this.load.audio("top_bgm", "../audio/top.mp3");
   }
@@ -31,13 +31,11 @@ export default class GameMenu extends Phaser.Scene {
     cloud3.depth = 1;
 
     // 木
-    this.depth = 0;
     const tree = this.add.image(900, 470, "tree");
     tree.depth = 1;
 
     // 地面
     const bgImage = this.add.image(510, 682, "bg");
-    bgImage.depth = bgImage.y;
     bgImage.depth = 2;
 
     // もぐら(仮)
@@ -46,19 +44,24 @@ export default class GameMenu extends Phaser.Scene {
 
     // 背景描画
     const bgGameMenu = this.add.graphics();
-    bgGameMenu.fillStyle(0xebfdff, 1).fillRect(0, 0, 1024, 768);
+    bgGameMenu
+      .fillStyle(0xebfdff, 1)
+      .fillRect(0, 0, 1024, 768);
 
     // 音声アイコン枠描画
     const soundCircle = this.add.graphics();
-    soundCircle.fillStyle(0x333333, 1).fillCircle(70, 700, 40);
-    soundCircle.depth = 3;
+    soundCircle
+      .fillStyle(0x333333, 1)
+      .fillCircle(70, 700, 40)
+      .depth = 3;
 
     // 音声アイコン
 
     const soundIcon = this.add.sprite(70, 700, "sound");
     let soundStatus = 1;
-    soundIcon.depth = 4;
-    soundIcon.setInteractive();
+    soundIcon
+      .setInteractive()
+      .depth = 4;
 
     // 音楽
     const fx = this.sound.add("top_bgm");
@@ -123,9 +126,11 @@ export default class GameMenu extends Phaser.Scene {
         .text(150, 260, "作成中", {
           fontSize: "32px",
           fill: "#ffffff",
-        })
-        .setPadding(4);
-      mnyLngText.depth = 2;
+        });
+
+      mnyLngText
+        .setPadding(4)
+        .depth = 2;
 
       // 神経衰弱
       const memoryGmButton = this.add.graphics();
@@ -133,16 +138,18 @@ export default class GameMenu extends Phaser.Scene {
         .lineStyle(5, 0x645246)
         .fillStyle(0x32b65e, 1)
         .fillRoundedRect(30, 360, 350, 90, 45)
-        .strokePath();
-      memoryGmButton.depth = 1;
+        .strokePath()
+        .depth = 1;
 
       const memoryText = this.add
         .text(150, 390, "作成中", {
           fontSize: "32px",
           fill: "#ffffff",
-        })
-        .setPadding(4);
-      memoryText.depth = 2;
+        });
+
+      memoryText
+        .setPadding(4)
+        .depth = 2;
 
       // 仲間で集まれ
       const tgtherFriendButton = this.add.graphics();
@@ -150,16 +157,16 @@ export default class GameMenu extends Phaser.Scene {
           .lineStyle(5, 0x645246)
           .fillStyle(0x32b65e, 1)
           .fillRoundedRect(30, 490, 350, 90, 45)
-          .strokePath();
-      tgtherFriendButton.depth = 1;
+          .strokePath()
+          .depth = 1;
   
       const tgtherText = this.add
         .text(150, 520, "作成中", {
             fontSize: "32px",
             fill: "#ffffff",
-        })
+        });
+      tgtherText
         .setPadding(4)
-      
-      tgtherText.depth = 2;
+        .depth = 2;
   }
 }
