@@ -2,7 +2,11 @@ import { kanjiList } from "./kanjilist.js";
 
 export default class HitsujiGame extends Phaser.Scene {
   constructor() {
-    super({ key: "hituji_game", active: false });
+    super({
+      key: "hituji_game",
+      active: false,
+      mapAdd: {},
+    });
     this.kanjiIndex = 0;
     this.kanjiComponents = [];
     this.timer = 0;
@@ -79,6 +83,18 @@ export default class HitsujiGame extends Phaser.Scene {
 
     this.updateKanji();
 
+    this.add
+      .text(775, 672, "一時停止", {
+        fill: 0x333333,
+        fontSize: 32,
+        fontFamily: "Arial",
+      })
+      .setInteractive()
+      .on("pointerdown", () => {
+        this.scene.pause();
+        this.scene.launch("pause_menu");
+      });
+
     if (this.mode === "timeLimit") {
       this.timerComponent = this.add.text(
         310,
@@ -111,6 +127,34 @@ export default class HitsujiGame extends Phaser.Scene {
       callback: this.countTime,
       callbackScope: this,
     });
+
+    this.events.on("resume", (scene, data) => {
+      switch (data.status) {
+        case "restart":
+          this.scene.stop();
+          this.scene.start("hituji_game", {
+            size: `${this.sizeY}x${this.sizeX}`,
+            mode: this.mode,
+            schoolYear: this.schoolYear,
+          });
+          break;
+        case "return-to-top":
+          this.scene.stop();
+          this.scene.start("game_menu");
+          break;
+        case "finish-game":
+          this.scene.stop();
+          this.scene.start("game_menu");
+          break;
+        default:
+      }
+    });
+
+    this.sys.events.once("shutdown", this.shutdown, this);
+  }
+
+  shutdown() {
+    this.events.off("addScore");
   }
 
   countTime() {
