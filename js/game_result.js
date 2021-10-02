@@ -24,11 +24,9 @@ export default class GameResult extends Phaser.Scene {
     this.cameras.main.fadeIn(2000);
 
     // 画像表示
-
-    // 雲３つ
+    // 雲2つ
     const cloud1 = this.add.image(100, 100, "cloud");
     cloud1.depth = 1;
-
     const cloud3 = this.add.image(900, 120, "cloud");
     cloud3.depth = 1;
 
@@ -52,21 +50,18 @@ export default class GameResult extends Phaser.Scene {
 
     // 音声アイコン枠描画
     const soundCircle = this.add.graphics();
-    soundCircle.fillStyle(0x333333, 1).fillCircle(70, 700, 40);
-    soundCircle.depth = 3;
+    soundCircle.fillStyle(0x333333, 1).fillCircle(70, 700, 40).depth = 3;
 
     // 音声アイコン
-
     const soundIcon = this.add.sprite(70, 700, "sound");
-    soundIcon.depth = 4;
-    soundIcon.setInteractive();
+    soundIcon.setInteractive().depth = 4;
 
     // リザルト表示
 
     // bgm
-    const fx = this.sound.add("ending");
-    fx.allowMultiple = false;
-    fx.play();
+    const endingBgm = this.sound.add("ending");
+    endingBgm.allowMultiple = false;
+    endingBgm.play();
 
     // 正解数/タイム
     this.add
@@ -76,6 +71,7 @@ export default class GameResult extends Phaser.Scene {
         fontSize: "50px",
       })
       .setOrigin(0.5, 0);
+
     this.add
       .text(512, 200, `タイム:${this.timer}`, {
         fill: 0x333333,
@@ -88,19 +84,22 @@ export default class GameResult extends Phaser.Scene {
 
     // トップへ戻るボタン
     // eslint-disable-next-line no-unused-vars
-    const topButton = this.add
-      .text(512, 320, "トップへ戻る", {
-        fontSize: "50px",
-        fill: "#333333",
-      });
+    const topButton = this.add.text(512, 320, "トップへ戻る", {
+      fontSize: "50px",
+      fill: "#333333",
+    });
+
     topButton
       .setPadding(10)
       .setOrigin(0.5, 0)
       .setInteractive()
-      .on("pointerdown",() => {
-          fx.stop();
+      .on(
+        "pointerdown",
+        () => {
+          endingBgm.stop();
           this.scene.start("game_menu");
-      },this)
-      .depth = 2;
+        },
+        this
+      ).depth = 2;
   }
 }

@@ -44,38 +44,31 @@ export default class GameMenu extends Phaser.Scene {
 
     // 背景描画
     const bgGameMenu = this.add.graphics();
-    bgGameMenu
-      .fillStyle(0xebfdff, 1)
-      .fillRect(0, 0, 1024, 768);
+    bgGameMenu.fillStyle(0xebfdff, 1).fillRect(0, 0, 1024, 768);
 
     // 音声アイコン枠描画
     const soundCircle = this.add.graphics();
-    soundCircle
-      .fillStyle(0x333333, 1)
-      .fillCircle(70, 700, 40)
-      .depth = 3;
+    soundCircle.fillStyle(0x333333, 1).fillCircle(70, 700, 40).depth = 3;
 
     // 音声アイコン
 
     const soundIcon = this.add.sprite(70, 700, "sound");
     let soundStatus = 1;
-    soundIcon
-      .setInteractive()
-      .depth = 4;
+    soundIcon.setInteractive().depth = 4;
 
     // 音楽
-    const fx = this.sound.add("top_bgm");
-    fx.allowMultiple = false;
-    fx.play();
+    const gameBgm = this.sound.add("top_bgm");
+    gameBgm.allowMultiple = false;
+    gameBgm.play();
 
     soundIcon.on(
       "pointerdown",
       () => {
         if (soundStatus === 0) {
-          fx.play();
+          gameBgm.play();
           soundStatus = 1;
         } else if (soundStatus === 1) {
-          fx.stop();
+          gameBgm.stop();
           soundStatus = 0;
         }
       },
@@ -104,69 +97,56 @@ export default class GameMenu extends Phaser.Scene {
       .on(
         "pointerdown",
         () => {
-          fx.stop();
+          gameBgm.stop();
           this.scene.start("game_setting");
         },
-        this);
-    
-    fndDiffText.depth = 2;
-        
+        this
+      ).depth = 2;
+
     // 作成中にする
+    // 多言語
+    const mnyLngButton = this.add.graphics();
+    mnyLngButton
+      .lineStyle(5, 0x645246)
+      .fillStyle(0x32b65e, 1)
+      .fillRoundedRect(30, 230, 350, 90, 45)
+      .strokePath().depth = 1;
 
-      // 多言語
-      const mnyLngButton = this.add.graphics();
-      mnyLngButton
-        .lineStyle(5, 0x645246)
-        .fillStyle(0x32b65e, 1)
-        .fillRoundedRect(30, 230, 350, 90, 45)
-        .strokePath();
-      mnyLngButton.depth = 1;
-   
-      const mnyLngText = this.add
-        .text(150, 260, "作成中", {
-          fontSize: "32px",
-          fill: "#ffffff",
-        });
+    const mnyLngText = this.add.text(150, 260, "作成中", {
+      fontSize: "32px",
+      fill: "#ffffff",
+    });
 
-      mnyLngText
-        .setPadding(4)
-        .depth = 2;
+    mnyLngText.setPadding(4).depth = 2;
 
-      // 神経衰弱
-      const memoryGmButton = this.add.graphics();
-      memoryGmButton
-        .lineStyle(5, 0x645246)
-        .fillStyle(0x32b65e, 1)
-        .fillRoundedRect(30, 360, 350, 90, 45)
-        .strokePath()
-        .depth = 1;
+    // 神経衰弱
+    const memoryGmButton = this.add.graphics();
+    memoryGmButton
+      .lineStyle(5, 0x645246)
+      .fillStyle(0x32b65e, 1)
+      .fillRoundedRect(30, 360, 350, 90, 45)
+      .strokePath().depth = 1;
 
-      const memoryText = this.add
-        .text(150, 390, "作成中", {
-          fontSize: "32px",
-          fill: "#ffffff",
-        });
+    const memoryText = this.add.text(150, 390, "作成中", {
+      fontSize: "32px",
+      fill: "#ffffff",
+    });
 
-      memoryText
-        .setPadding(4)
-        .depth = 2;
+    memoryText.setPadding(4).depth = 2;
 
-      // 仲間で集まれ
-      const tgtherFriendButton = this.add.graphics();
-      tgtherFriendButton
-          .lineStyle(5, 0x645246)
-          .fillStyle(0x32b65e, 1)
-          .fillRoundedRect(30, 490, 350, 90, 45)
-          .strokePath()
-          .depth = 1;
-  
-      const tgtherText = this.add
-        .text(150, 520, "作成中", {
-            fontSize: "32px",
-            fill: "#ffffff",
-        });
-      tgtherText
-        .setPadding(4)
-        .depth = 2;
+    // 仲間で集まれ
+    const tgtherFriendButton = this.add.graphics();
+    tgtherFriendButton
+      .lineStyle(5, 0x645246)
+      .fillStyle(0x32b65e, 1)
+      .fillRoundedRect(30, 490, 350, 90, 45)
+      .strokePath().depth = 1;
+
+    const tgtherText = this.add.text(150, 520, "作成中", {
+      fontSize: "32px",
+      fill: "#ffffff",
+    });
+
+    tgtherText.setPadding(4).depth = 2;
   }
 }
