@@ -47,29 +47,31 @@ export default class HowPlay extends Phaser.Scene{
         .fillStyle(0x32b65e, 1)
         .fillRoundedRect(331, 615, 368, 80, 40)
         .strokePath()
+        .setInteractive(new Phaser.Geom.Rectangle(331, 615, 368, 80), Phaser.Geom.Rectangle.Contains)
         .depth = 1;
-    
+        
       const completeText = this.add
         .text(453,635,'わかった！',{
           fontSize: "32px",
           fill: "#FFFFFF",
           fontFamily: "Arial"
         });
+        completeText.depth = 2;
 
-      completeText
-        .setPadding(4)
+      completeButton
         .setInteractive()
         .on("pointerdown",() => {
+          this.gameMusic.stop();
           this.scene.start("game_setting");
         },this)
         .depth = 2;
 
     // 音楽
       // ゲームBGM
-      this.fx = this.sound.add("top_bgm");
-      this.fx.allowMultiple = false;
-      this.fx.setLoop(true);
-      this.fx.play();
+      this.gameMusic = this.sound.add("top_bgm");
+      this.gameMusic.allowMultiple = false;
+      this.gameMusic.setLoop(true);
+      this.gameMusic.play();
       let soundStatus = 1;
     
       // 音声アイコン枠描画
@@ -77,20 +79,19 @@ export default class HowPlay extends Phaser.Scene{
       soundCircle
         .fillStyle(0x939393, 1)
         .fillCircle(300, 460, 30)
+        .setInteractive(new Phaser.Geom.Circle(300, 460, 30), Phaser.Geom.Circle.Contains)
         .depth = 3;
       
       // 音声アイコン
       const soundIcon = this.add.sprite(300, 460, "sound");
-      soundIcon
-        .setInteractive()
-        .depth = 4;
+      soundIcon.depth = 4;
       
-      soundIcon.on("pointerdown",() => {
+      soundCircle.on("pointerdown",() => {
         if (soundStatus === 0) {
-          this.fx.play();
+          this.gameMusic.play();
           soundStatus = 1;
         } else if (soundStatus === 1) {
-          this.fx.stop();
+          this.gameMusic.stop();
           soundStatus = 0;
         }
       },this);
@@ -103,21 +104,23 @@ export default class HowPlay extends Phaser.Scene{
           .fillStyle(0xeaeaea, 1)
           .fillRoundedRect(640, 440, 104, 35, 18)
           .strokePath()
+          .setInteractive(new Phaser.Geom.Rectangle(640, 440, 104, 35), Phaser.Geom.Rectangle.Contains)
           .depth = 1;
 
         // 一時停止テキスト
         const pauseText = this.add
-          .text(657,445,'一時停止',{
+          .text(657,448,'一時停止',{
             fontSize: "16px",
             fill: "#333333",
             fontFamily: "Arial"
           });
+        pauseText.depth = 3;
 
-        pauseText
-          .setPadding(4)
-          .setInteractive()
-          .on("pointerdown",() => {
-          },this)
-          .depth = 2;
+        pauseButton.on("pointerdown",() => {
+          this.scene.start("");
+        },this)
+
+
+
     }
 }
