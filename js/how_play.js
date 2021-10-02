@@ -66,7 +66,7 @@ export default class HowPlay extends Phaser.Scene {
         this.scene.start("game_setting");
       },
       this
-    ).depth = 2;
+    );
 
     // もぐら
     const moguraIcon = this.add.sprite(385, 650, "mogura");

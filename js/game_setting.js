@@ -104,12 +104,13 @@ export default class GameSetting extends Phaser.Scene {
 
     this.sizeButtons["4x8"] = this.add.text(639, 227, "4×8");
 
-    Object.values(this.sizeButtons).forEach((value) => {
+    Object.keys(this.sizeButtons).forEach((key) => {
+      const value = this.sizeButtons[key];
       value.setStyle({
         fontSize: 24,
       });
       value.setInteractive().on("pointerdown", () => {
-        this.size = value.text;
+        this.size = key;
         this.select();
       });
     });
