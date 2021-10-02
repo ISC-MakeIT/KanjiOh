@@ -4,7 +4,7 @@ import HitsujiGame from "./hituji_game.js";
 import GameResult from "./game_result.js";
 import WindowSetting from "./window_setting.js";
 import OpenLogo from "./open_logo.js";
-import HowPlay from "./how_play.js";
+import HowToPlay from "./how_to_play.js";
 
 const config = {
   type: Phaser.AUTO,
@@ -20,4 +20,4 @@ game.scene.add("logo", OpenLogo);
 game.scene.add("game_setting", GameSetting);
 game.scene.add("hituji_game", HitsujiGame);
 game.scene.add("game_result", GameResult);
-game.scene.add("how_play", HowPlay);
+game.scene.add("how_to_play", HowToPlay);

@@ -1,6 +1,6 @@
-export default class HowPlay extends Phaser.Scene {
+export default class HowToPlay extends Phaser.Scene {
   constructor() {
-    super({ key: "how_play", active: false });
+    super({ key: "how_to_play", active: false });
   }
 
   preload() {

@@ -187,7 +187,7 @@ export default class GameSetting extends Phaser.Scene {
     howPlay.setInteractive().on(
       "pointerdown",
       () => {
-        this.scene.start("how_play");
+        this.scene.start("how_to_play");
       },
       this
     ).depth = 1;
