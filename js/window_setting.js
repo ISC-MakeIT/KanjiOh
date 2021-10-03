@@ -10,33 +10,37 @@ export default class WindowSetting extends Phaser.Scene {
 
       graphics
         .fillStyle(0xffffff, 1)
-        .fillRoundedRect(352, 302, 320, 160, 5, 5).depth = 0;
+        .fillRoundedRect(352, 302, 320, 160, 5, 5)
+        .depth = 0;
 
       // --- テキスト---
-      const screenText = this.add.text(
-        388,
-        328,
-        "フルスクリーン表示しますか？",
-        {
+      const screenText = this.add
+        .text(388,328,"フルスクリーン表示しますか？",{
           fontSize: "18px",
           fontFamily: "nomal",
           fill: "#3c3c3c",
         }
       );
 
-      screenText.setPadding(4).depth = 1;
+      screenText
+        .setInteractive()
+        .on("pointerdown", () => {
+          this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+          this.scale.pageAlignHorisontally = true;
+          this.scale.pageAlignVertically = true;
+        })
+        .setPadding(4)
+        .depth = 1;
 
-      const alertText = this.add.text(
-        388,
-        421,
-        "※フルスクリーン表示にしないとゲームが開始されません",
-        {
+      const alertText = this.add
+        .text(388,421,"※フルスクリーン表示にしないとゲームが開始されません",{
           fontSize: "10px",
           fill: "#3c3c3c",
-        }
-      );
+        });
 
-      alertText.setPadding(4).depth = 1;
+      alertText
+        .setPadding(4)
+        .depth = 1;
 
       // --- ボタン---
 

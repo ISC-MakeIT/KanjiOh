@@ -5,7 +5,6 @@ export default class GameSetting extends Phaser.Scene {
     this.size = "4x8";
     this.mode = "timeLimit";
     this.schoolYear = "1年生";
-
     this.sizeButtons = {};
     this.modeButtons = {};
     this.schoolYearButtons = {};
@@ -16,7 +15,7 @@ export default class GameSetting extends Phaser.Scene {
     this.load.image("sound", "../img/sound.png");
 
     // bgm
-    //    this.load.audio('top_bgm', '../audio/top.mp3');
+    this.load.audio("top_bgm", "../audio/top.mp3");
   }
 
   create() {
@@ -34,8 +33,7 @@ export default class GameSetting extends Phaser.Scene {
         this.scene.start("game_menu");
       },
       this
-    );
-    crossButton.depth = 1;
+    ).depth = 1;
 
     // 見出し
 
@@ -71,21 +69,34 @@ export default class GameSetting extends Phaser.Scene {
       })
       .setPadding(4);
 
-    // ボタン
-
-    // サイズ
-
     // 音声
     // 音声アイコン枠描画
     const soundCircle = this.add.graphics();
-    soundCircle.fillStyle(0x333333, 1).fillCircle(70, 700, 40);
-    soundCircle.depth = 0;
+    soundCircle.fillStyle(0x333333, 1).fillCircle(70, 700, 40).depth = 0;
 
     // 音声アイコン
+    let soundStatus = 1;
     const soundIcon = this.add.sprite(70, 700, "sound");
-    // let soundStatus = 1;
-    soundIcon.depth = 1;
-    soundIcon.setInteractive();
+    soundIcon.setInteractive().depth = 1;
+
+    // 音楽
+    const gameBgm = this.sound.add("top_bgm");
+    gameBgm.allowMultiple = false;
+    gameBgm.play();
+
+    soundIcon.on(
+      "pointerdown",
+      () => {
+        if (soundStatus === 0) {
+          gameBgm.play();
+          soundStatus = 1;
+        } else if (soundStatus === 1) {
+          gameBgm.stop();
+          soundStatus = 0;
+        }
+      },
+      this
+    );
 
     this.sizeButtons["2x4"] = this.add.text(330, 227, "2×4");
 
@@ -93,12 +104,13 @@ export default class GameSetting extends Phaser.Scene {
 
     this.sizeButtons["4x8"] = this.add.text(639, 227, "4×8");
 
-    Object.values(this.sizeButtons).forEach((value) => {
+    Object.keys(this.sizeButtons).forEach((key) => {
+      const value = this.sizeButtons[key];
       value.setStyle({
         fontSize: 24,
       });
       value.setInteractive().on("pointerdown", () => {
-        this.size = value.text;
+        this.size = key;
         this.select();
       });
     });
@@ -166,6 +178,19 @@ export default class GameSetting extends Phaser.Scene {
         },
         this
       ).depth = 1;
+
+    const howPlay = this.add.text(700, 666, "遊び方", {
+      fontSize: "32px",
+      fill: "#ffffff",
+    });
+
+    howPlay.setInteractive().on(
+      "pointerdown",
+      () => {
+        this.scene.start("how_to_play");
+      },
+      this
+    ).depth = 1;
   }
 
   select() {
