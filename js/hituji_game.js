@@ -65,21 +65,6 @@ export default class HitsujiGame extends Phaser.Scene {
       this
     );
 
-    for (let y = 0; y < this.sizeY; y += 1) {
-      this.kanjiComponents.push([]);
-      for (let x = 0; x < this.sizeX; x += 1) {
-        this.kanjiComponents[y].push(
-          this.add
-            .text(100 + x * 100, 200 + y * 100, "　", {
-              fill: 0x333333,
-              fontSize: 60,
-              fontFamily: "Arial",
-            })
-            .setInteractive()
-        );
-      }
-    }
-
     this.createKanji();
 
     this.add
@@ -177,6 +162,7 @@ export default class HitsujiGame extends Phaser.Scene {
     this.clearKanji();
 
     for (let y = 0; y < this.sizeY; y += 1) {
+      this.kanjiComponents.push([]);
       for (let x = 0; x < this.sizeX; x += 1) {
         if (y === answerY && x === answerX) {
           this.kanjiComponents[y].push(
@@ -224,7 +210,7 @@ export default class HitsujiGame extends Phaser.Scene {
         this.kanjiComponents[y][x].destroy();
       }
     }
-    this.kanjiComponents = Array(this.sizeY).fill([]);
+    this.kanjiComponents = [];
   }
 
   createAnswerComponent() {
