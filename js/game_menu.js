@@ -63,8 +63,8 @@ export default class GameMenu extends Phaser.Scene {
       .fillCircle(70, 700, 40)
       .setInteractive(
         new Phaser.Geom.Circle(70, 700, 40),
-        Phaser.Geom.Circle.Contains)
-      .depth = 3;
+        Phaser.Geom.Circle.Contains
+      ).depth = 3;
 
     // 音声アイコン
     const soundIcon = this.add.sprite(70, 700, "sound");
@@ -100,49 +100,46 @@ export default class GameMenu extends Phaser.Scene {
       .fillStyle(0xffffff, 1)
       .fillRoundedRect(30, 100, 350, 90, 45)
       .strokePath()
-      .setInteractive(new Phaser.Geom.Rectangle(30, 100, 350, 90), Phaser.Geom.Rectangle.Contains)
-      .depth = 2;
+      .setInteractive(
+        new Phaser.Geom.Rectangle(30, 100, 350, 90),
+        Phaser.Geom.Rectangle.Contains
+      ).depth = 2;
 
-    fndDiffButton
-      .on(
-        "pointerdown",
-        () => {
-          gameBgm.stop();
-          this.scene.start("game_setting");
-        },
-        this
-        )
+    fndDiffButton.on(
+      "pointerdown",
+      () => {
+        gameBgm.stop();
+        this.scene.start("game_setting");
+      },
+      this
+    );
 
-    const fndDiffText = this.add
-      .text(70, 130, "羊の中に犬が一匹", {
-        fontSize: "32px",
-        fill: "#333333",
-      });
+    const fndDiffText = this.add.text(70, 130, "羊の中に犬が一匹", {
+      fontSize: "32px",
+      fill: "#333333",
+    });
 
-    fndDiffText
-      .setPadding(4)
-      .depth = 3;
-      
-  // 作成中にする
+    fndDiffText.setPadding(4).depth = 3;
+
+    // 作成中にする
     // 多言語
     const mnyLngButton = this.add.graphics();
     mnyLngButton
       .lineStyle(5, 0x645246)
       .fillStyle(0x32b65e, 1)
       .fillRoundedRect(30, 230, 350, 90, 45)
-      .setInteractive(new Phaser.Geom.Rectangle(30, 230, 350, 90), Phaser.Geom.Rectangle.Contains)
-      .strokePath()
-      .depth = 2;
- 
-    const mnyLngText = this.add
-      .text(150, 260, "作成中", {
-        fontSize: "32px",
-        fill: "#ffffff",
-      });
+      .setInteractive(
+        new Phaser.Geom.Rectangle(30, 230, 350, 90),
+        Phaser.Geom.Rectangle.Contains
+      )
+      .strokePath().depth = 2;
 
-    mnyLngText
-      .setPadding(4)
-      .depth = 3;
+    const mnyLngText = this.add.text(150, 260, "作成中", {
+      fontSize: "32px",
+      fill: "#ffffff",
+    });
+
+    mnyLngText.setPadding(4).depth = 3;
 
     // 神経衰弱
     const memoryGmButton = this.add.graphics();
@@ -150,19 +147,18 @@ export default class GameMenu extends Phaser.Scene {
       .lineStyle(5, 0x645246)
       .fillStyle(0x32b65e, 1)
       .fillRoundedRect(30, 360, 350, 90, 45)
-      .setInteractive(new Phaser.Geom.Rectangle(30, 360, 350, 90), Phaser.Geom.Rectangle.Contains)
-      .strokePath()
-      .depth = 2;
+      .setInteractive(
+        new Phaser.Geom.Rectangle(30, 360, 350, 90),
+        Phaser.Geom.Rectangle.Contains
+      )
+      .strokePath().depth = 2;
 
-    const memoryText = this.add
-      .text(150, 390, "作成中", {
-        fontSize: "32px",
-        fill: "#ffffff",
-      });
+    const memoryText = this.add.text(150, 390, "作成中", {
+      fontSize: "32px",
+      fill: "#ffffff",
+    });
 
-    memoryText
-      .setPadding(4)
-      .depth = 3;
+    memoryText.setPadding(4).depth = 3;
 
     // 仲間で集まれ
     const tgtherFriendButton = this.add.graphics();
@@ -170,18 +166,17 @@ export default class GameMenu extends Phaser.Scene {
       .lineStyle(5, 0x645246)
       .fillStyle(0x32b65e, 1)
       .fillRoundedRect(30, 490, 350, 90, 45)
-      .setInteractive(new Phaser.Geom.Rectangle(30, 490, 350, 90), Phaser.Geom.Rectangle.Contains)
-      .strokePath()
-      .depth = 2;
+      .setInteractive(
+        new Phaser.Geom.Rectangle(30, 490, 350, 90),
+        Phaser.Geom.Rectangle.Contains
+      )
+      .strokePath().depth = 2;
 
-    const tgtherText = this.add
-      .text(150, 520, "作成中", {
-        fontSize: "32px",
-        fill: "#ffffff",
-      });
+    const tgtherText = this.add.text(150, 520, "作成中", {
+      fontSize: "32px",
+      fill: "#ffffff",
+    });
 
-    tgtherText
-      .setPadding(4)
-      .depth = 3;
+    tgtherText.setPadding(4).depth = 3;
   }
 }

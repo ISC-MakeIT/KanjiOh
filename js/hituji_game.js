@@ -2,12 +2,10 @@ import { kanjiList } from "./kanjilist.js";
 
 export default class HitsujiGame extends Phaser.Scene {
   constructor() {
-    super({ key: "hituji_game", active: false });
-    this.kanjiIndex = 0;
-    this.kanjiComponents = [];
-    this.timer = 0;
-    this.answerCounter = 0;
-    this.wrongFlag = false;
+    super({
+      key: "hituji_game",
+      active: false,
+    });
   }
 
   preload() {
@@ -23,6 +21,11 @@ export default class HitsujiGame extends Phaser.Scene {
     this.sizeY = data.size[0] - 0;
     this.sizeX = data.size[2] - 0;
     this.kanjiList = kanjiList[data.schoolYear];
+    this.kanjiIndex = 0;
+    this.kanjiComponents = [];
+    this.timer = 0;
+    this.answerCounter = 0;
+    this.wrongFlag = false;
   }
 
   create() {
@@ -63,8 +66,8 @@ export default class HitsujiGame extends Phaser.Scene {
     );
 
     for (let y = 0; y < this.sizeY; y += 1) {
+      this.kanjiComponents.push([]);
       for (let x = 0; x < this.sizeX; x += 1) {
-        this.kanjiComponents.push([]);
         this.kanjiComponents[y].push(
           this.add
             .text(100 + x * 100, 200 + y * 100, "　", {
@@ -77,33 +80,22 @@ export default class HitsujiGame extends Phaser.Scene {
       }
     }
 
-    this.updateKanji();
+    this.createKanji();
 
-    if (this.mode === "timeLimit") {
-      this.timerComponent = this.add.text(
-        310,
-        54,
-        `残り時間：${60 - this.timer}秒`,
-        {
-          fill: 0x333333,
-          fontSize: 50,
-          fontFamily: "Arial",
-        }
-      );
-    } else if (this.mode === "timeAttack") {
-      this.timerComponent = this.add.text(10, 10, `残り時間：${this.timer}秒`, {
-        fontSize: 50,
-        fontFamily: "Arial",
-      });
-    }
-
-    this.answerComponent = this.add
-      .text(360, 671, `正解数:${this.answerCounter}問`, {
+    this.add
+      .text(775, 672, "一時停止", {
         fill: 0x333333,
-        fontSize: 50,
+        fontSize: 32,
         fontFamily: "Arial",
       })
-      .setOrigin(1, 0);
+      .setInteractive()
+      .on("pointerdown", () => {
+        this.scene.pause();
+        this.scene.launch("pause_menu");
+      });
+
+    this.createTimerComponent();
+    this.createAnswerComponent();
 
     this.time.addEvent({
       delay: 1000,
@@ -111,17 +103,40 @@ export default class HitsujiGame extends Phaser.Scene {
       callback: this.countTime,
       callbackScope: this,
     });
+
+    this.events.on("resume", (scene, data) => {
+      switch (data.status) {
+        case "restart":
+          this.registry.destroy();
+          this.events.off();
+          this.scene.stop();
+          this.scene.start("hituji_game", {
+            size: `${this.sizeY}x${this.sizeX}`,
+            mode: this.mode,
+            schoolYear: this.schoolYear,
+          });
+          break;
+        case "return-to-top":
+          this.registry.destroy();
+          this.events.off();
+          this.scene.stop();
+          this.scene.start("game_menu");
+          break;
+        case "finish-game":
+          this.registry.destroy();
+          this.events.off();
+          this.scene.stop();
+          this.scene.start("game_menu");
+          break;
+        default:
+      }
+    });
   }
 
   countTime() {
     this.timer += 1;
     this.check();
-
-    if (this.mode === "timeLimit") {
-      this.timerComponent.setText(`残り時間：${60 - this.timer}秒`);
-    } else if (this.mode === "timeAttack") {
-      this.timerComponent.setText(`${this.timer}秒`);
-    }
+    this.createTimerComponent();
   }
 
   check() {
@@ -150,7 +165,7 @@ export default class HitsujiGame extends Phaser.Scene {
     }
   }
 
-  updateKanji() {
+  createKanji() {
     const answerY = Math.floor(Math.random() * this.sizeY);
     const answerX = Math.floor(Math.random() * this.sizeX);
     const i = this.kanjiIndex;
@@ -159,32 +174,88 @@ export default class HitsujiGame extends Phaser.Scene {
     const correct = this.sound.add("correct_se");
     const but = this.sound.add("but_se");
 
+    this.clearKanji();
+
     for (let y = 0; y < this.sizeY; y += 1) {
       for (let x = 0; x < this.sizeX; x += 1) {
-        this.kanjiComponents[y][x].off("pointerdown");
-
         if (y === answerY && x === answerX) {
-          this.kanjiComponents[y][x].setText(this.kanjiList[i][1]);
-          this.kanjiComponents[y][x].once("pointerdown", () => {
-            correct.play();
-
-            this.answerCounter += 1;
-            this.answerComponent.setText(`正解数:${this.answerCounter}問`);
-            this.check();
-            this.updateKanji();
-          });
+          this.kanjiComponents[y].push(
+            this.add
+              .text(100 + x * 100, 200 + y * 100, this.kanjiList[i][1], {
+                fill: 0x333333,
+                fontSize: 60,
+                fontFamily: "Arial",
+              })
+              .setInteractive()
+              .once("pointerdown", () => {
+                correct.play();
+                this.answerCounter += 1;
+                this.createAnswerComponent();
+                this.check();
+                this.createKanji();
+              })
+          );
         } else {
-          this.kanjiComponents[y][x].setText(this.kanjiList[i][0]);
-          this.kanjiComponents[y][x].once("pointerdown", () => {
-            but.play();
-            this.wrongFlag = true;
-            this.check();
-            this.updateKanji();
-          });
+          this.kanjiComponents[y].push(
+            this.add
+              .text(100 + x * 100, 200 + y * 100, this.kanjiList[i][0], {
+                fill: 0x333333,
+                fontSize: 60,
+                fontFamily: "Arial",
+              })
+              .setInteractive()
+              .once("pointerdown", () => {
+                but.play();
+                this.wrongFlag = true;
+                this.check();
+                this.createKanji();
+              })
+          );
         }
       }
     }
 
     this.kanjiIndex = (this.kanjiIndex + 1) % this.kanjiList.length;
+  }
+
+  clearKanji() {
+    for (let y = 0; y < this.kanjiComponents.length; y += 1) {
+      for (let x = 0; x < this.kanjiComponents[y].length; x += 1) {
+        this.kanjiComponents[y][x].destroy();
+      }
+    }
+    this.kanjiComponents = Array(this.sizeY).fill([]);
+  }
+
+  createAnswerComponent() {
+    if (this.answerComponent) this.answerComponent.destroy();
+    this.answerComponent = this.add
+      .text(360, 671, `正解数:${this.answerCounter}問`, {
+        fill: 0x333333,
+        fontSize: 50,
+        fontFamily: "Arial",
+      })
+      .setOrigin(1, 0);
+  }
+
+  createTimerComponent() {
+    if (this.timerComponent) this.timerComponent.destroy();
+    if (this.mode === "timeLimit") {
+      this.timerComponent = this.add.text(
+        310,
+        54,
+        `残り時間：${60 - this.timer}秒`,
+        {
+          fill: 0x333333,
+          fontSize: 50,
+          fontFamily: "Arial",
+        }
+      );
+    } else if (this.mode === "timeAttack") {
+      this.timerComponent = this.add.text(10, 10, `残り時間：${this.timer}秒`, {
+        fontSize: 50,
+        fontFamily: "Arial",
+      });
+    }
   }
 }
