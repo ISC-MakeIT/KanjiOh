@@ -1,7 +1,6 @@
 export default class PauseMenu extends Phaser.Scene {
   constructor() {
     super("pause_menu");
-    // this.events = new Phaser.Events.EventEmitter();
   }
 
   create() {
@@ -15,34 +14,7 @@ export default class PauseMenu extends Phaser.Scene {
       fontFamily: "Arial",
       fontSize: 32,
     };
-    /*
-    const hitsujiGame = this.game.scene.getScene("hituji_game");
-    console.log(hitsujiGame);
-    hitsujiGame.events = new Phaser.Events.EventEmitter();
-    hitsujiGame.events.on("resume", (scene, data) => {
-      console.log(data.status);
-      switch (data.status) {
-        case "restart":
-          hitsujiGame.scene.stop();
-          this.scene.start("hituji_game", {
-            size: `${this.sizeY}x${this.sizeX}`,
-            mode: this.mode,
-            schoolYear: this.schoolYear,
-          });
-          break;
-        case "return-to-top":
-          hitsujiGame.scene.stop();
-          this.scene.start("game_menu");
-          break;
-        case "finish-game":
-          hitsujiGame.scene.stop();
-          this.scene.start("game_menu");
-          break;
-        default:
-      }
-      this.scene.stop();
-    });
-*/
+
     this.add
       .text(halfOfSceneWidth, 200, "再開する", textStyle)
       .setOrigin(0.5, 0)
