@@ -8,6 +8,7 @@ export default class GameMenu extends Phaser.Scene {
     this.load.image("sound", "../img/sound.png");
     this.load.image("cloud", "../img/game_cloud.png");
     this.load.image("top_mogura", "../img/mogura.png");
+    this.load.image("mogura", "../img/min_mogura.png");
 
     this.load.image("tree1", "../assets/animation/tree1.png");
     this.load.image("tree2", "../assets/animation/tree2.png");
@@ -47,7 +48,7 @@ export default class GameMenu extends Phaser.Scene {
     }); 
     
     // 画像表示
-    
+
     // 背景描画
     const bgGameMenu = this.add.graphics();
     bgGameMenu.fillStyle(0xebfdff, 1).fillRect(0, 0, 1024, 768);
@@ -192,7 +193,20 @@ export default class GameMenu extends Phaser.Scene {
       .lineStyle(5, 0x645246)
       .fillStyle(0xffffff, 1)
       .fillRoundedRect(30, 100, 350, 90, 45)
-      .strokePath().depth = 1;
+      .strokePath()
+      .setInteractive(
+        new Phaser.Geom.Rectangle(30, 100, 350, 90),
+        Phaser.Geom.Rectangle.Contains
+      ).depth = 2;
+
+    fndDiffButton.on(
+      "pointerdown",
+      () => {
+        this.gameBgm.stop();
+        this.scene.start("game_setting");
+      },
+      this
+    );
 
     const fndDiffText = this.add.text(70, 130, "羊の中に犬が一匹", {
       fontSize: "32px",
@@ -218,7 +232,11 @@ export default class GameMenu extends Phaser.Scene {
       .lineStyle(5, 0x645246)
       .fillStyle(0x32b65e, 1)
       .fillRoundedRect(30, 230, 350, 90, 45)
-      .strokePath().depth = 1;
+      .setInteractive(
+        new Phaser.Geom.Rectangle(30, 230, 350, 90),
+        Phaser.Geom.Rectangle.Contains
+      )
+      .strokePath().depth = 2;
 
     const mnyLngText = this.add.text(150, 260, "作成中", {
       fontSize: "32px",
@@ -233,7 +251,11 @@ export default class GameMenu extends Phaser.Scene {
       .lineStyle(5, 0x645246)
       .fillStyle(0x32b65e, 1)
       .fillRoundedRect(30, 360, 350, 90, 45)
-      .strokePath().depth = 1;
+      .setInteractive(
+        new Phaser.Geom.Rectangle(30, 360, 350, 90),
+        Phaser.Geom.Rectangle.Contains
+      )
+      .strokePath().depth = 2;
 
     const memoryText = this.add.text(150, 390, "作成中", {
       fontSize: "32px",
@@ -248,7 +270,11 @@ export default class GameMenu extends Phaser.Scene {
       .lineStyle(5, 0x645246)
       .fillStyle(0x32b65e, 1)
       .fillRoundedRect(30, 490, 350, 90, 45)
-      .strokePath().depth = 1;
+      .setInteractive(
+        new Phaser.Geom.Rectangle(30, 490, 350, 90),
+        Phaser.Geom.Rectangle.Contains
+      )
+      .strokePath().depth = 2;
 
     const tgtherText = this.add.text(150, 520, "作成中", {
       fontSize: "32px",
