@@ -10,9 +10,25 @@ export default class GameResult extends Phaser.Scene {
     this.load.image("bg", "../img/bg.png");
     this.load.image("cloud", "../img/game_cloud.png");
     this.load.image("tree", "../img/tree.png");
-    this.load.image("top_mogura", "../img/mogura.png");
+
     // bgm
     this.load.audio("ending", "../audio/ending.mp3");
+
+    // 花火GIF
+    this.load.image("fire1", "../img/fire1.png");
+    this.load.image("fire2", "../img/fire2.png");
+    this.load.image("fire3", "../img/fire3.png");
+    this.load.image("fire4", "../img/fire4.png");
+    this.load.image("fire5", "../img/fire5.png");
+    this.load.image("fire6", "../img/fire6.png");
+
+    // もぐらん仮GIF
+    this.load.image("shiba1", "../img/shiba1.png");
+    this.load.image("shiba2", "../img/shiba2.png");
+    this.load.image("shiba3", "../img/shiba3.png");
+    this.load.image("shiba4", "../img/shiba4.png");
+
+
   }
 
   init(data) {
@@ -40,10 +56,6 @@ export default class GameResult extends Phaser.Scene {
     bgImage.depth = bgImage.y;
     bgImage.depth = 2;
 
-    // もぐら(仮)
-    const mogura = this.add.image(750, 530, "top_mogura");
-    mogura.depth = 1;
-
     // 背景描画
     const bgGameMenu = this.add.graphics();
     bgGameMenu.fillStyle(0xebfdff, 1).fillRect(0, 0, 1024, 768);
@@ -63,43 +75,153 @@ export default class GameResult extends Phaser.Scene {
     endingBgm.allowMultiple = false;
     endingBgm.play();
 
-    // 正解数/タイム
+    // クリアメッセージ
     this.add
-      .text(512, 100, `正解数:${this.answers}`, {
+      .text(270, 84, `GAME CLEAR !!!`, {
+        fill: 0x32B65E,
+        fontFamily: "SemiBold",
+        fontSize: "64px",
+      })
+      // .setOrigin(0.5, 0);
+    
+    // 正解数
+    this.add
+      .text(350, 230, `クリアした問題数:${this.answers}門`, {
         fill: 0x333333,
         fontFamily: "Arial",
-        fontSize: "50px",
+        fontSize: "32px",
       })
-      .setOrigin(0.5, 0);
+      // .setOrigin(0.5, 0);
 
-    this.add
-      .text(512, 200, `タイム:${this.timer}`, {
-        fill: 0x333333,
-        fontFamily: "Arial",
-        fontSize: "50px",
-      })
-      .setOrigin(0.5, 0);
+    const backTopButton = this.add.graphics();
 
-    // 終了後ゲームメニュー
-
-    // トップへ戻るボタン
-    // eslint-disable-next-line no-unused-vars
-    const topButton = this.add.text(512, 320, "トップへ戻る", {
-      fontSize: "50px",
-      fill: "#333333",
-    });
-
-    topButton
-      .setPadding(10)
-      .setOrigin(0.5, 0)
-      .setInteractive()
-      .on(
+      backTopButton
+        .lineStyle(5, 0x645246)
+        .fillStyle(0xffffff, 1)
+        .fillRoundedRect(57, 332, 265, 72, 35)
+        .strokePath()
+        .setInteractive(
+          new Phaser.Geom.Rectangle(57, 332, 272, 72),
+          Phaser.Geom.Rectangle.Contains
+        ).depth = 2;
+  
+      backTopButton.on(
         "pointerdown",
         () => {
-          endingBgm.stop();
           this.scene.start("game_menu");
         },
         this
-      ).depth = 2;
-  }
-}
+      );
+  
+      const backTopText = this.add.text(115, 355, "トップへ戻る", {
+        fontSize: "24px",
+        fill: "#333333",
+      });
+  
+      backTopText.setPadding(4).depth = 3;
+
+    // ゲーム設定に戻るボタン
+    const backGameSetButton = this.add.graphics();
+
+      backGameSetButton
+        .lineStyle(5, 0x645246)
+        .fillStyle(0xffffff, 1)
+        .fillRoundedRect(697, 332, 265, 72, 35)
+        .strokePath()
+        .setInteractive(
+          new Phaser.Geom.Rectangle(697, 332, 272, 72),
+          Phaser.Geom.Rectangle.Contains
+        ).depth = 2;
+  
+      backGameSetButton.on(
+        "pointerdown",
+        () => {
+          this.scene.start("hituji_game");
+        },
+        this
+      );
+  
+      const backGameSetText = this.add.text(415, 355, "ゲーム設定に戻る", {
+        fontSize: "24px",
+        fill: "#333333",
+      });
+  
+      backGameSetText.setPadding(4).depth = 3;
+
+    // もう一度プレイするボタン
+    const retryGameButton = this.add.graphics();
+
+      retryGameButton
+        .lineStyle(5, 0x645246)
+        .fillStyle(0xffffff, 1)
+        .fillRoundedRect(377, 332, 265, 72, 35)
+        .strokePath()
+        .setInteractive(
+          new Phaser.Geom.Rectangle(377, 332, 272, 72),
+          Phaser.Geom.Rectangle.Contains
+        ).depth = 2;
+  
+      retryGameButton.on(
+        "pointerdown",
+        () => {
+          this.scene.start("game_setting");
+        },
+        this
+      );
+  
+      const retryGameText = this.add.text(725, 355, "もう一度プレイする", {
+        fontSize: "24px",
+        fill: "#333333",
+      });
+  
+      retryGameText.setPadding(4).depth = 3;
+  
+    // 花火
+    this.anims.create({
+      key: 'fireFlower',
+      frames: [
+        { key: 'fire1',duration: 300},
+        { key: 'fire2',duration: 200},
+        { key: 'fire3',duration: 200},
+        { key: 'fire4',duration: 200},
+        { key: 'fire5',duration: 200},
+        { key: 'fire6',duration: 200}
+      ],
+      frameRate: 24,
+      repeat: -1,
+    });
+
+    const fireFlower1 = this.add.sprite(115, 350, 'fire1');
+    fireFlower1
+      .setOrigin(0,1)
+      .play('fireFlower')
+      .depth = 1;
+
+    const fireFlower2 = this.add.sprite(650, 350, 'fire1');
+    fireFlower2
+      .setOrigin(0,1)
+      .play('fireFlower')
+      .depth = 1;
+  
+    
+    // 仮もぐらんGIF
+      this.anims.create({
+        key: 'shiba',
+        frames: [
+            { key: 'shiba1', duration: 100},
+            { key: 'shiba2', duration: 100},
+            { key: 'shiba3', duration: 100},
+            { key: 'shiba4', duration: 100}
+        ],
+        frameRate: 24,
+        repeat: -1
+      });
+  
+      const shiba = this.add.sprite(360, 400, 'shiba1')
+      shiba
+        .setOrigin(0,0)
+        .play('shiba')
+        .depth = 4;
+    };
+    };      
+
