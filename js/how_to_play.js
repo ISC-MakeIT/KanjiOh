@@ -122,35 +122,6 @@ export default class HowToPlay extends Phaser.Scene {
       this
     );
 
-    // 一時停止ボタン
-    // ボタン描画
-    const pauseButton = this.add.graphics();
-    pauseButton
-      .lineStyle(3, 0x333333)
-      .fillStyle(0xeaeaea, 1)
-      .fillRoundedRect(640, 440, 104, 35, 18)
-      .strokePath()
-      .setInteractive(
-        new Phaser.Geom.Rectangle(640, 440, 104, 35),
-        Phaser.Geom.Rectangle.Contains
-      ).depth = 1;
-
-    // 一時停止テキスト
-    const pauseText = this.add.text(657, 448, "一時停止", {
-      fontSize: "16px",
-      fill: "#333333",
-      fontFamily: "Arial",
-    });
-    pauseText.depth = 3;
-
-    pauseButton.on(
-      "pointerdown",
-      () => {
-        this.scene.start("");
-      },
-      this
-    );
-
     this.createKanji();
   }
 
