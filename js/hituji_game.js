@@ -65,6 +65,7 @@ export default class HitsujiGame extends Phaser.Scene {
       this
     );
 
+    this.shuffleKanjiList();
     this.createKanji();
 
     this.add
@@ -201,7 +202,11 @@ export default class HitsujiGame extends Phaser.Scene {
       }
     }
 
-    this.kanjiIndex = (this.kanjiIndex + 1) % this.kanjiList.length;
+    this.kanjiIndex += 1;
+    if (this.kanjiIndex >= this.kanjiList.length) {
+      this.shuffleKanjiList();
+      this.kanjiIndex %= this.kanjiList.length;
+    }
   }
 
   clearKanji() {
