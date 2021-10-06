@@ -3,6 +3,18 @@ export default class HowToPlay extends Phaser.Scene {
     super({ key: "how_to_play", active: false });
   }
 
+  init() {
+    this.kanjiList = [
+      ["白", "日"],
+      ["刀", "力"],
+      ["右", "左"],
+    ];
+    this.kanjiIndex = Math.floor(Math.random() * this.kanjiList.length);
+    this.sizeY = 2;
+    this.sizeX = 4;
+    this.kanjiComponents = [];
+  }
+
   preload() {
     // もぐらんボタン
     this.load.image("mogura", "../img/min_mogura.png");
@@ -10,6 +22,8 @@ export default class HowToPlay extends Phaser.Scene {
     this.load.image("sound", "../img/sound.png");
     // ミニゲーム中bgm
     this.load.audio("top_bgm", "../audio/top.mp3");
+    this.load.audio("correct_se", "../audio/correct.mp3");
+    this.load.audio("but_se", "../audio/but_se.mp3");
   }
 
   create() {
@@ -108,33 +122,61 @@ export default class HowToPlay extends Phaser.Scene {
       this
     );
 
-    // 一時停止ボタン
-    // ボタン描画
-    const pauseButton = this.add.graphics();
-    pauseButton
-      .lineStyle(3, 0x333333)
-      .fillStyle(0xeaeaea, 1)
-      .fillRoundedRect(640, 440, 104, 35, 18)
-      .strokePath()
-      .setInteractive(
-        new Phaser.Geom.Rectangle(640, 440, 104, 35),
-        Phaser.Geom.Rectangle.Contains
-      ).depth = 1;
+    this.createKanji();
+  }
 
-    // 一時停止テキスト
-    const pauseText = this.add.text(657, 448, "一時停止", {
-      fontSize: "16px",
-      fill: "#333333",
-      fontFamily: "Arial",
-    });
-    pauseText.depth = 3;
+  createKanji() {
+    const answerY = Math.floor(Math.random() * this.sizeY);
+    const answerX = Math.floor(Math.random() * this.sizeX);
+    const i = this.kanjiIndex;
 
-    pauseButton.on(
-      "pointerdown",
-      () => {
-        this.scene.start("");
-      },
-      this
-    );
+    // 正解/不正解SE
+    const correct = this.sound.add("correct_se");
+    const but = this.sound.add("but_se");
+
+    this.clearKanji();
+
+    for (let y = 0; y < this.sizeY; y += 1) {
+      this.kanjiComponents.push([]);
+      for (let x = 0; x < this.sizeX; x += 1) {
+        const kanji =
+          y === answerY && x === answerX
+            ? this.kanjiList[i][1]
+            : this.kanjiList[i][0];
+        this.kanjiComponents[y].push(
+          this.add
+            .text(300 + x * 114, 163 + y * 128, kanji, {
+              fill: 0x333333,
+              fontSize: 80,
+              fontFamily: "Arial",
+            })
+            .setInteractive()
+        );
+
+        if (y === answerY && x === answerX) {
+          this.kanjiComponents[y][x].once("pointerdown", () => {
+            correct.play();
+            this.createKanji();
+          });
+        } else {
+          this.kanjiComponents[y][x].once("pointerdown", () => {
+            but.play();
+            this.createKanji();
+          });
+        }
+        this.kanjiComponents[y][x].depth = 10;
+      }
+    }
+
+    this.kanjiIndex = (this.kanjiIndex + 1) % this.kanjiList.length;
+  }
+
+  clearKanji() {
+    for (let y = 0; y < this.kanjiComponents.length; y += 1) {
+      for (let x = 0; x < this.kanjiComponents[y].length; x += 1) {
+        this.kanjiComponents[y][x].destroy();
+      }
+    }
+    this.kanjiComponents = [];
   }
 }
