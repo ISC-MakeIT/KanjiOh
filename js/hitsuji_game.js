@@ -3,7 +3,7 @@ import { kanjiList } from "./kanjilist.js";
 export default class HitsujiGame extends Phaser.Scene {
   constructor() {
     super({
-      key: "hituji_game",
+      key: "hitsuji_game",
       active: false,
     });
   }
@@ -96,7 +96,7 @@ export default class HitsujiGame extends Phaser.Scene {
           this.registry.destroy();
           this.events.off();
           this.scene.stop();
-          this.scene.start("hituji_game", {
+          this.scene.start("hitsuji_game", {
             size: `${this.sizeY}x${this.sizeX}`,
             mode: this.mode,
             schoolYear: this.schoolYear,
