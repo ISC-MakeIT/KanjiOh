@@ -26,7 +26,7 @@ export default class GameMenu extends Phaser.Scene {
     // bgm
     this.load.audio("top_bgm", "../audio/top.mp3");
   }
- 
+
   create() {
     this.cameras.main.fadeIn(1000);
     this.cameras.main.once("camerafadeincomplete", () => {
@@ -43,10 +43,10 @@ export default class GameMenu extends Phaser.Scene {
         this.moguraAnim();
       }, 5000);
       setTimeout(() => {
-        this.gameMenuFade();        
+        this.gameMenuFade();
       }, 8000);
-    }); 
-    
+    });
+
     // 画像表示
 
     // 背景描画
@@ -91,46 +91,39 @@ export default class GameMenu extends Phaser.Scene {
     );
   }
 
-  groundAnim(){
+  groundAnim() {
     // 地面
     this.anims.create({
-      key: 'ground',
+      key: "ground",
       frames: [
-        { key: 'ground1',duration: 100},
-        { key: 'ground2',duration: 70},
-        { key: 'ground3',duration: 10}
+        { key: "ground1", duration: 100 },
+        { key: "ground2", duration: 70 },
+        { key: "ground3", duration: 10 },
       ],
       frameRate: 16,
     });
-  
-    const ground = this.add.sprite(0, 768, 'ground1');
-    ground
-      .setOrigin(0,1)
-      .play('ground')
-      .depth = 2;
-  };
 
-  treeAnim(){ 
+    const ground = this.add.sprite(0, 768, "ground1");
+    ground.setOrigin(0, 1).play("ground").depth = 2;
+  }
+
+  treeAnim() {
     // 木
     this.anims.create({
-      key: 'tree',
+      key: "tree",
       frames: [
-          { key: 'tree1', duration: 100},
-          { key: 'tree2', duration: 70},
-          { key: 'tree3', duration: 10}
+        { key: "tree1", duration: 100 },
+        { key: "tree2", duration: 70 },
+        { key: "tree3", duration: 10 },
       ],
       frameRate: 16,
-      
     });
 
-    const tree = this.add.sprite(900, 610, 'tree1')
-    tree
-      .setOrigin(0.5,1)
-      .play('tree')
-      .depth = 3;
-    };
-  
-  cloudAnim(){
+    const tree = this.add.sprite(900, 610, "tree1");
+    tree.setOrigin(0.5, 1).play("tree").depth = 3;
+  }
+
+  cloudAnim() {
     // 雲３つ
     const cloud1 = this.add.image(100, -100, "cloud");
     cloud1.depth = 1;
@@ -153,37 +146,35 @@ export default class GameMenu extends Phaser.Scene {
   }
 
   // 落ちるアニメーション
-  doropAnim(doropItem){
+  doropAnim(doropItem) {
     this.tweens.add({
       targets: [doropItem],
       props: {
-          y: { value: 100 + doropItem.depth, duration: 1500, ease: 'Power2' }
-      },delay: 1000});
+        y: { value: 100 + doropItem.depth, duration: 1500, ease: "Power2" },
+      },
+      delay: 1000,
+    });
   }
 
   // (仮)Gif
-  moguraAnim(){
+  moguraAnim() {
     this.anims.create({
-      key: 'shiba',
+      key: "shiba",
       frames: [
-          { key: 'shiba1', duration: 100},
-          { key: 'shiba2', duration: 70},
-          { key: 'shiba3', duration: 10},
-          { key: 'shiba4', duration: 10}
+        { key: "shiba1", duration: 100 },
+        { key: "shiba2", duration: 70 },
+        { key: "shiba3", duration: 10 },
+        { key: "shiba4", duration: 10 },
       ],
       frameRate: 24,
-      repeat: 1
+      repeat: 1,
     });
 
-    const shiba = this.add.sprite(544, 335, 'shiba1')
-    shiba
-      .setOrigin(0,0)
-      .play('shiba')
-      .depth = 4;
-  };
-    
-  gameMenuFade(){
-  
+    const shiba = this.add.sprite(544, 335, "shiba1");
+    shiba.setOrigin(0, 0).play("shiba").depth = 4;
+  }
+
+  gameMenuFade() {
     // ゲームメニューボタン
 
     // 羊の中に～ボタン/テキスト
@@ -244,7 +235,7 @@ export default class GameMenu extends Phaser.Scene {
     });
 
     mnyLngText.setPadding(4).depth = 2;
-    
+
     // 神経衰弱
     const memoryGmButton = this.add.graphics();
     memoryGmButton
@@ -263,7 +254,7 @@ export default class GameMenu extends Phaser.Scene {
     });
 
     memoryText.setPadding(4).depth = 2;
-    
+
     // 仲間で集まれ
     const tgtherFriendButton = this.add.graphics();
     tgtherFriendButton
@@ -281,6 +272,6 @@ export default class GameMenu extends Phaser.Scene {
       fill: "#ffffff",
     });
 
-    tgtherText.setPadding(4).depth = 2;    
+    tgtherText.setPadding(4).depth = 2;
   }
 }

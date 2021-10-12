@@ -3,7 +3,7 @@ import { kanjiList } from "./kanjilist.js";
 export default class HitsujiGame extends Phaser.Scene {
   constructor() {
     super({
-      key: "hituji_game",
+      key: "hitsuji_game",
       active: false,
     });
   }
@@ -65,6 +65,7 @@ export default class HitsujiGame extends Phaser.Scene {
       this
     );
 
+    this.shuffleKanjiList();
     this.createKanji();
 
     this.add
@@ -95,7 +96,7 @@ export default class HitsujiGame extends Phaser.Scene {
           this.registry.destroy();
           this.events.off();
           this.scene.stop();
-          this.scene.start("hituji_game", {
+          this.scene.start("hitsuji_game", {
             size: `${this.sizeY}x${this.sizeX}`,
             mode: this.mode,
             schoolYear: this.schoolYear,
@@ -164,44 +165,44 @@ export default class HitsujiGame extends Phaser.Scene {
     for (let y = 0; y < this.sizeY; y += 1) {
       this.kanjiComponents.push([]);
       for (let x = 0; x < this.sizeX; x += 1) {
+        const kanji =
+          y === answerY && x === answerX
+            ? this.kanjiList[i][1]
+            : this.kanjiList[i][0];
+        this.kanjiComponents[y].push(
+          this.add
+            .text(100 + x * 100, 200 + y * 100, kanji, {
+              fill: 0x333333,
+              fontSize: 60,
+              fontFamily: "Arial",
+            })
+            .setInteractive()
+        );
+
         if (y === answerY && x === answerX) {
-          this.kanjiComponents[y].push(
-            this.add
-              .text(100 + x * 100, 200 + y * 100, this.kanjiList[i][1], {
-                fill: 0x333333,
-                fontSize: 60,
-                fontFamily: "Arial",
-              })
-              .setInteractive()
-              .once("pointerdown", () => {
-                correct.play();
-                this.answerCounter += 1;
-                this.createAnswerComponent();
-                this.check();
-                this.createKanji();
-              })
-          );
+          this.kanjiComponents[y][x].once("pointerdown", () => {
+            correct.play();
+            this.answerCounter += 1;
+            this.check();
+            this.createAnswerComponent();
+            this.createKanji();
+          });
         } else {
-          this.kanjiComponents[y].push(
-            this.add
-              .text(100 + x * 100, 200 + y * 100, this.kanjiList[i][0], {
-                fill: 0x333333,
-                fontSize: 60,
-                fontFamily: "Arial",
-              })
-              .setInteractive()
-              .once("pointerdown", () => {
-                but.play();
-                this.wrongFlag = true;
-                this.check();
-                this.createKanji();
-              })
-          );
+          this.kanjiComponents[y][x].once("pointerdown", () => {
+            but.play();
+            this.wrongFlag = true;
+            this.check();
+            this.createKanji();
+          });
         }
       }
     }
 
-    this.kanjiIndex = (this.kanjiIndex + 1) % this.kanjiList.length;
+    this.kanjiIndex += 1;
+    if (this.kanjiIndex >= this.kanjiList.length) {
+      this.shuffleKanjiList();
+      this.kanjiIndex %= this.kanjiList.length;
+    }
   }
 
   clearKanji() {

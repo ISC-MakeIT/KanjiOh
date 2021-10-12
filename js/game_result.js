@@ -27,8 +27,6 @@ export default class GameResult extends Phaser.Scene {
     this.load.image("shiba2", "../img/shiba2.png");
     this.load.image("shiba3", "../img/shiba3.png");
     this.load.image("shiba4", "../img/shiba4.png");
-
-
   }
 
   init(data) {
@@ -76,152 +74,139 @@ export default class GameResult extends Phaser.Scene {
     endingBgm.play();
 
     // クリアメッセージ
-    this.add
-      .text(270, 84, `GAME CLEAR !!!`, {
-        fill: 0x32B65E,
-        fontFamily: "SemiBold",
-        fontSize: "64px",
-      })
-      // .setOrigin(0.5, 0);
-    
+    this.add.text(270, 84, `GAME CLEAR !!!`, {
+      fill: 0x32b65e,
+      fontFamily: "SemiBold",
+      fontSize: "64px",
+    });
+    // .setOrigin(0.5, 0);
+
     // 正解数
-    this.add
-      .text(350, 230, `クリアした問題数:${this.answers}門`, {
-        fill: 0x333333,
-        fontFamily: "Arial",
-        fontSize: "32px",
-      })
-      // .setOrigin(0.5, 0);
+    this.add.text(350, 230, `クリアした問題数:${this.answers}門`, {
+      fill: 0x333333,
+      fontFamily: "Arial",
+      fontSize: "32px",
+    });
+    // .setOrigin(0.5, 0);
 
     const backTopButton = this.add.graphics();
 
-      backTopButton
-        .lineStyle(5, 0x645246)
-        .fillStyle(0xffffff, 1)
-        .fillRoundedRect(57, 332, 265, 72, 35)
-        .strokePath()
-        .setInteractive(
-          new Phaser.Geom.Rectangle(57, 332, 272, 72),
-          Phaser.Geom.Rectangle.Contains
-        ).depth = 2;
-  
-      backTopButton.on(
-        "pointerdown",
-        () => {
-          this.scene.start("game_menu");
-        },
-        this
-      );
-  
-      const backTopText = this.add.text(115, 355, "トップへ戻る", {
-        fontSize: "24px",
-        fill: "#333333",
-      });
-  
-      backTopText.setPadding(4).depth = 3;
+    backTopButton
+      .lineStyle(5, 0x645246)
+      .fillStyle(0xffffff, 1)
+      .fillRoundedRect(57, 332, 265, 72, 35)
+      .strokePath()
+      .setInteractive(
+        new Phaser.Geom.Rectangle(57, 332, 272, 72),
+        Phaser.Geom.Rectangle.Contains
+      ).depth = 2;
+
+    backTopButton.on(
+      "pointerdown",
+      () => {
+        this.scene.start("game_menu");
+      },
+      this
+    );
+
+    const backTopText = this.add.text(115, 355, "トップへ戻る", {
+      fontSize: "24px",
+      fill: "#333333",
+    });
+
+    backTopText.setPadding(4).depth = 3;
 
     // ゲーム設定に戻るボタン
     const backGameSetButton = this.add.graphics();
 
-      backGameSetButton
-        .lineStyle(5, 0x645246)
-        .fillStyle(0xffffff, 1)
-        .fillRoundedRect(697, 332, 265, 72, 35)
-        .strokePath()
-        .setInteractive(
-          new Phaser.Geom.Rectangle(697, 332, 272, 72),
-          Phaser.Geom.Rectangle.Contains
-        ).depth = 2;
-  
-      backGameSetButton.on(
-        "pointerdown",
-        () => {
-          this.scene.start("hituji_game");
-        },
-        this
-      );
-  
-      const backGameSetText = this.add.text(415, 355, "ゲーム設定に戻る", {
-        fontSize: "24px",
-        fill: "#333333",
-      });
-  
-      backGameSetText.setPadding(4).depth = 3;
+    backGameSetButton
+      .lineStyle(5, 0x645246)
+      .fillStyle(0xffffff, 1)
+      .fillRoundedRect(697, 332, 265, 72, 35)
+      .strokePath()
+      .setInteractive(
+        new Phaser.Geom.Rectangle(697, 332, 272, 72),
+        Phaser.Geom.Rectangle.Contains
+      ).depth = 2;
+
+    backGameSetButton.on(
+      "pointerdown",
+      () => {
+        this.scene.start("hituji_game");
+      },
+      this
+    );
+
+    const backGameSetText = this.add.text(415, 355, "ゲーム設定に戻る", {
+      fontSize: "24px",
+      fill: "#333333",
+    });
+
+    backGameSetText.setPadding(4).depth = 3;
 
     // もう一度プレイするボタン
     const retryGameButton = this.add.graphics();
 
-      retryGameButton
-        .lineStyle(5, 0x645246)
-        .fillStyle(0xffffff, 1)
-        .fillRoundedRect(377, 332, 265, 72, 35)
-        .strokePath()
-        .setInteractive(
-          new Phaser.Geom.Rectangle(377, 332, 272, 72),
-          Phaser.Geom.Rectangle.Contains
-        ).depth = 2;
-  
-      retryGameButton.on(
-        "pointerdown",
-        () => {
-          this.scene.start("game_setting");
-        },
-        this
-      );
-  
-      const retryGameText = this.add.text(725, 355, "もう一度プレイする", {
-        fontSize: "24px",
-        fill: "#333333",
-      });
-  
-      retryGameText.setPadding(4).depth = 3;
-  
+    retryGameButton
+      .lineStyle(5, 0x645246)
+      .fillStyle(0xffffff, 1)
+      .fillRoundedRect(377, 332, 265, 72, 35)
+      .strokePath()
+      .setInteractive(
+        new Phaser.Geom.Rectangle(377, 332, 272, 72),
+        Phaser.Geom.Rectangle.Contains
+      ).depth = 2;
+
+    retryGameButton.on(
+      "pointerdown",
+      () => {
+        this.scene.start("game_setting");
+      },
+      this
+    );
+
+    const retryGameText = this.add.text(725, 355, "もう一度プレイする", {
+      fontSize: "24px",
+      fill: "#333333",
+    });
+
+    retryGameText.setPadding(4).depth = 3;
+
     // 花火
     this.anims.create({
-      key: 'fireFlower',
+      key: "fireFlower",
       frames: [
-        { key: 'fire1',duration: 300},
-        { key: 'fire2',duration: 200},
-        { key: 'fire3',duration: 200},
-        { key: 'fire4',duration: 200},
-        { key: 'fire5',duration: 200},
-        { key: 'fire6',duration: 200}
+        { key: "fire1", duration: 300 },
+        { key: "fire2", duration: 200 },
+        { key: "fire3", duration: 200 },
+        { key: "fire4", duration: 200 },
+        { key: "fire5", duration: 200 },
+        { key: "fire6", duration: 200 },
       ],
       frameRate: 24,
       repeat: -1,
     });
 
-    const fireFlower1 = this.add.sprite(115, 350, 'fire1');
-    fireFlower1
-      .setOrigin(0,1)
-      .play('fireFlower')
-      .depth = 1;
+    const fireFlower1 = this.add.sprite(115, 350, "fire1");
+    fireFlower1.setOrigin(0, 1).play("fireFlower").depth = 1;
 
-    const fireFlower2 = this.add.sprite(650, 350, 'fire1');
-    fireFlower2
-      .setOrigin(0,1)
-      .play('fireFlower')
-      .depth = 1;
-  
-    
+    const fireFlower2 = this.add.sprite(650, 350, "fire1");
+    fireFlower2.setOrigin(0, 1).play("fireFlower").depth = 1;
+
     // 仮もぐらんGIF
-      this.anims.create({
-        key: 'shiba',
-        frames: [
-            { key: 'shiba1', duration: 100},
-            { key: 'shiba2', duration: 100},
-            { key: 'shiba3', duration: 100},
-            { key: 'shiba4', duration: 100}
-        ],
-        frameRate: 24,
-        repeat: -1
-      });
-  
-      const shiba = this.add.sprite(360, 400, 'shiba1')
-      shiba
-        .setOrigin(0,0)
-        .play('shiba')
-        .depth = 4;
-    };
-    };      
+    this.anims.create({
+      key: "shiba",
+      frames: [
+        { key: "shiba1", duration: 100 },
+        { key: "shiba2", duration: 100 },
+        { key: "shiba3", duration: 100 },
+        { key: "shiba4", duration: 100 },
+      ],
+      frameRate: 24,
+      repeat: -1,
+    });
 
+    const shiba = this.add.sprite(360, 400, "shiba1");
+    shiba.setOrigin(0, 0).play("shiba").depth = 4;
+  }
+}

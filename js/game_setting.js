@@ -170,7 +170,7 @@ export default class GameSetting extends Phaser.Scene {
       .on(
         "pointerdown",
         () => {
-          this.scene.start("hituji_game", {
+          this.scene.start("hitsuji_game", {
             size: this.size,
             mode: this.mode,
             schoolYear: this.schoolYear,

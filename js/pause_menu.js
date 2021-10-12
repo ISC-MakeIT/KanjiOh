@@ -22,7 +22,7 @@ export default class PauseMenu extends Phaser.Scene {
       .once(
         "pointerdown",
         () => {
-          this.scene.resume("hituji_game", { status: "continue" });
+          this.scene.resume("hitsuji_game", { status: "continue" });
           this.scene.stop();
         },
         this
@@ -35,7 +35,7 @@ export default class PauseMenu extends Phaser.Scene {
       .once(
         "pointerdown",
         () => {
-          this.scene.resume("hituji_game", {
+          this.scene.resume("hitsuji_game", {
             status: "restart",
           });
           this.scene.stop();
@@ -50,7 +50,7 @@ export default class PauseMenu extends Phaser.Scene {
       .once(
         "pointerdown",
         () => {
-          this.scene.resume("hituji_game", { status: "return-to-top" });
+          this.scene.resume("hitsuji_game", { status: "return-to-top" });
           this.scene.stop();
         },
         this
@@ -63,7 +63,7 @@ export default class PauseMenu extends Phaser.Scene {
       .once(
         "pointerdown",
         () => {
-          this.scene.resume("hituji_game", { status: "finish-game" });
+          this.scene.resume("hitsuji_game", { status: "finish-game" });
           this.scene.stop();
         },
         this
