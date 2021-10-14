@@ -53,13 +53,13 @@ export default class GameMenu extends Phaser.Scene {
     const bgGameMenu = this.add.graphics();
     bgGameMenu.fillStyle(0xebfdff, 1).fillRect(0, 0, 1024, 768);
 
+    setTimeout(() => {
+      this.gameBgm.play();
+    }, 9000);
     // 音楽
     this.gameBgm = this.sound.add("top_bgm");
     this.gameBgm.allowMultiple = false;
     this.gameBgm.setLoop(true);
-    setTimeout(() => {
-      this.gameBgm.play();
-    }, 9000);
     let soundStatus = 1;
 
     // 音声アイコン枠描画
@@ -68,7 +68,7 @@ export default class GameMenu extends Phaser.Scene {
       .fillStyle(0x333333, 1)
       .fillCircle(70, 700, 40)
       .setInteractive(
-        new Phaser.Geom.Circle(300, 460, 30),
+        new Phaser.Geom.Circle(70, 700, 30),
         Phaser.Geom.Circle.Contains
       ).depth = 3;
 
@@ -79,6 +79,7 @@ export default class GameMenu extends Phaser.Scene {
     soundCircle.on(
       "pointerdown",
       () => {
+        console.log("hoge");
         if (soundStatus === 0) {
           this.gameBgm.play();
           soundStatus = 1;
