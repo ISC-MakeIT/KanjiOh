@@ -79,7 +79,6 @@ export default class GameMenu extends Phaser.Scene {
     soundCircle.on(
       "pointerdown",
       () => {
-        console.log("hoge");
         if (soundStatus === 0) {
           this.gameBgm.play();
           soundStatus = 1;
