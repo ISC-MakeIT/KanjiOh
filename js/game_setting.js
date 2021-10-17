@@ -1,6 +1,5 @@
 export default class GameSetting extends Phaser.Scene {
   constructor() {
-    // super("game_setting");
     super({ key: "game_setting", active: false });
     this.size = "4x8";
     this.mode = "timeLimit";
@@ -11,33 +10,31 @@ export default class GameSetting extends Phaser.Scene {
   }
 
   preload() {
-    // メニュー画面に出てくる画像のロード
+  // メニュー画面に出てくる画像のロード
     this.load.image("sound", "../img/sound.png");
 
-    // bgm
+  // bgm
     this.load.audio("top_bgm", "../audio/top.mp3");
   }
 
   create() {
-    // --- ボタン---
+  // --- ボタン---
 
-    // --- ✖ボタン・イベント ---
+  // --- ✖ボタン・イベント ---
     const crossButton = this.add.text(967, 36, "✖", {
-      fontSize: "24px",
+      fontSize: "32px",
       fill: "#ffffff",
     });
 
     crossButton.setInteractive().on(
       "pointerdown",
       () => {
+        gameBgm.stop();
         this.scene.start("game_menu");
-      },
-      this
+      },this
     ).depth = 1;
 
-    // 見出し
-
-    // タイトル
+  // タイトル
     this.add
       .text(330, 64, "羊の中に犬が一匹", {
         fontSize: 48,
@@ -45,41 +42,67 @@ export default class GameSetting extends Phaser.Scene {
       })
       .setPadding(4);
 
-    // サイズ
+  // ゲームメニュー
+    const gameMenuBox = this.add.graphics();
+    gameMenuBox
+      .fillStyle(0x333333, 1)
+      .fillRect(120, 154, 787, 446)
+      .depth = 1;
+    
+    const gameMenuLine = this.add.graphics();
+    gameMenuLine
+      .fillStyle(0x535353, 1)
+      .fillRect(396, 154, 2, 446)
+      .depth = 2;
+
+  // サイズ
     this.add
-      .text(467, 160, "サイズ", {
+      .text(210, 236, "サイズ", {
         fontSize: 32,
         padding: 3,
       })
-      .setPadding(4);
+      .setPadding(4)
+      .depth = 2;
 
-    // プレイモード
+  // プレイモード
     this.add
-      .text(430, 320, "プレイモード", {
+      .text(162, 350, "プレイモード", {
         fontSize: 32,
         padding: 3,
       })
-      .setPadding(4);
+      .setPadding(4)
+      .depth = 2;
 
-    // 出てくる漢字
-    this.add
-      .text(430, 481, "出てくる漢字", {
+  // 出てくる漢字
+    const hoge = this.add
+      .text(163, 463, "出てくる漢字", {
         fontSize: 32,
         padding: 3,
       })
-      .setPadding(4);
+      .setInteractive()
+      .setPadding(4)
+      .on('pointerdown',()=>{
+        setStyle({
+          color: "#333333"
+        });
+      })
+      .depth = 2;
 
-    // 音声
-    // 音声アイコン枠描画
+
+
+
+  // 音楽・音声アイコン枠描画
     const soundCircle = this.add.graphics();
-    soundCircle.fillStyle(0x333333, 1).fillCircle(70, 700, 40).depth = 0;
+    soundCircle
+      .fillStyle(0x333333, 1)
+      .fillCircle(70, 700, 40).depth = 0;
 
-    // 音声アイコン
+  // 音声アイコン
     let soundStatus = 1;
     const soundIcon = this.add.sprite(70, 700, "sound");
     soundIcon.setInteractive().depth = 1;
 
-    // 音楽
+  // 音楽
     const gameBgm = this.sound.add("top_bgm");
     gameBgm.allowMultiple = false;
     gameBgm.play();
@@ -150,16 +173,15 @@ export default class GameSetting extends Phaser.Scene {
 
     this.select();
 
-    // 羊の中に～ボタン/テキスト
+  // ゲームスタートボタン・テキスト
     const startButton = this.add.graphics();
-
     startButton
       .lineStyle(5, 0x645246)
       .fillStyle(0x32b65e, 1)
-      .fillRoundedRect(360, 642, 368, 80, 40)
+      .fillRoundedRect(340, 642, 368, 80, 40)
       .strokePath().depth = 0;
 
-    const gameStartText = this.add.text(437, 666, "ゲームスタート", {
+    const gameStartText = this.add.text(417, 666, "ゲームスタート", {
       fontSize: "32px",
       fill: "#ffffff",
     });
@@ -170,6 +192,7 @@ export default class GameSetting extends Phaser.Scene {
       .on(
         "pointerdown",
         () => {
+          this.gameBgm.stop();
           this.scene.start("hitsuji_game", {
             size: this.size,
             mode: this.mode,
@@ -179,18 +202,34 @@ export default class GameSetting extends Phaser.Scene {
         this
       ).depth = 1;
 
-    const howPlay = this.add.text(700, 666, "遊び方", {
+  // 遊び方ボタン  
+    const howToPlayButton = this.add.graphics();
+    howToPlayButton
+      .lineStyle(1.5, 0xffffff)
+      .fillStyle(0x000000, 1)
+      .fillRoundedRect(787, 645, 189, 75, 35)
+      .setInteractive(
+        new Phaser.Geom.Rectangle(787, 645, 189, 75),
+        Phaser.Geom.Rectangle.Contains
+      )
+      .strokePath().depth = 2;
+    
+    const howToPlay = this.add.text(830, 665, "遊び方", {
       fontSize: "32px",
       fill: "#ffffff",
     });
 
-    howPlay.setInteractive().on(
+    howToPlay
+      .setInteractive()
+      .setPadding(4)
+      .on(
       "pointerdown",
       () => {
+        this.gameBgm.stop();
         this.scene.start("how_to_play");
       },
       this
-    ).depth = 1;
+    ).depth = 3;
   }
 
   select() {
