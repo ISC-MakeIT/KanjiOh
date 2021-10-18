@@ -10,13 +10,22 @@ export default class GameMenu extends Phaser.Scene {
     this.load.image("top_mogura", "../img/mogura.png");
     this.load.image("mogura", "../img/min_mogura.png");
 
-    this.load.image("tree1", "../assets/animation/tree1.png");
-    this.load.image("tree2", "../assets/animation/tree2.png");
-    this.load.image("tree3", "../assets/animation/tree3.png");
+    this.load.image("tree1", "../assets/animation/tree_1.png");
+    this.load.image("tree2", "../assets/animation/tree_2.png");
+    this.load.image("tree3", "../assets/animation/tree_3.png");
+    this.load.image("tree4", "../assets/animation/tree_4.png");
+    this.load.image("tree5", "../assets/animation/tree_5.png");
+    this.load.image("tree6", "../assets/animation/tree_6.png");
+    this.load.image("tree7", "../assets/animation/tree_7.png");
 
-    this.load.image("ground1", "../assets/animation/ground1.png");
-    this.load.image("ground2", "../assets/animation/ground2.png");
-    this.load.image("ground3", "../assets/animation/ground3.png");
+    this.load.image("ground1", "../assets/animation/soil_1.png");
+    this.load.image("ground2", "../assets/animation/soil_2.png");
+    this.load.image("ground3", "../assets/animation/soil_3.png");
+    this.load.image("ground4", "../assets/animation/soil_4.png");
+    this.load.image("ground5", "../assets/animation/soil_5.png");
+    this.load.image("ground6", "../assets/animation/soil_6.png");
+    this.load.image("ground7", "../assets/animation/soil_7.png");
+
 
     this.load.image("shiba1", "../assets/animation/frame-01.png");
     this.load.image("shiba2", "../assets/animation/frame-02.png");
@@ -96,11 +105,15 @@ export default class GameMenu extends Phaser.Scene {
     this.anims.create({
       key: "ground",
       frames: [
-        { key: "ground1", duration: 100 },
-        { key: "ground2", duration: 70 },
-        { key: "ground3", duration: 10 },
+        { key: "ground1", duration: 10 },
+        { key: "ground2", duration: 20 },
+        { key: "ground3", duration: 30 },
+        { key: "ground4", duration: 40 },
+        { key: "ground5", duration: 50 },
+        { key: "ground6", duration: 60 },
+        { key: "ground7", duration: 1000 },
       ],
-      frameRate: 16,
+      frameRate: 24,
     });
 
     const ground = this.add.sprite(0, 768, "ground1");
@@ -112,11 +125,15 @@ export default class GameMenu extends Phaser.Scene {
     this.anims.create({
       key: "tree",
       frames: [
-        { key: "tree1", duration: 100 },
-        { key: "tree2", duration: 70 },
-        { key: "tree3", duration: 10 },
+        { key: "tree1", duration: 10 },
+        { key: "tree2", duration: 20 },
+        { key: "tree3", duration: 30 },
+        { key: "tree4", duration: 40 },
+        { key: "tree5", duration: 50 },
+        { key: "tree6", duration: 60 },
+        { key: "tree7", duration: 1000 },
       ],
-      frameRate: 16,
+      frameRate: 24,
     });
 
     const tree = this.add.sprite(900, 610, "tree1");
