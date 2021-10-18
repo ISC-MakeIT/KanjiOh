@@ -249,8 +249,8 @@ export default class GameSetting extends Phaser.Scene {
     .setPadding(4)
     .on('pointerdown',()=>{
       // if(gamemodeGroup.toggleVisible(false) || kanjiButton.toggleVisible(false))
-      playModeButton.toggleVisible(true);
-      kanjiButton.toggleVisible(true);
+      // playModeButton.toggleVisible(true);
+      // kanjiButton.toggleVisible(true);
 
       gameSizeButton
         .setStyle({
@@ -288,7 +288,7 @@ export default class GameSetting extends Phaser.Scene {
       timeLimitButton
         .fillStyle(0x32b65e, 1)
         .fillRoundedRect(585, 224, 160, 56, 30);
-        this.mode = this.modeButtons.timeLimit
+        this.mode = "timeLimit"
       timeLimitButtonText
         .setStyle({
           color: "#ffffff",
@@ -325,7 +325,7 @@ export default class GameSetting extends Phaser.Scene {
       timeAttackButton
         .fillStyle(0x32b65e, 1)
         .fillRoundedRect(551, 338, 229, 56, 30);
-        this.mode = this.mode.timeAttack
+        this.mode = "timeAttack"
       timeAttackButtonText
         .setStyle({
           color: "#ffffff",
@@ -362,7 +362,7 @@ export default class GameSetting extends Phaser.Scene {
       suddenDeathButton
         .fillStyle(0x32b65e, 1)
         .fillRoundedRect(573, 452, 184, 56, 30);
-        this.mode = this.modeButtons.suddenDeath
+        this.mode = "suddenDeath"
       suddenDeathButtonText
         .setStyle({
           color: "#ffffff",
