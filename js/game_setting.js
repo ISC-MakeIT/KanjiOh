@@ -345,7 +345,7 @@ export default class GameSetting extends Phaser.Scene {
     )
     .strokePath()
     .depth = 2;
-
+ 
   this.modeButtons.suddenDeath = this.add.text(600, 465, "サドンデス");
   const suddenDeathButtonText = this.modeButtons.suddenDeath
   suddenDeathButtonText
