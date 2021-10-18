@@ -9,7 +9,7 @@ export default class GameResult extends Phaser.Scene {
     this.load.image("sound", "../img/sound.png");
     this.load.image("bg", "../img/bg.png");
     this.load.image("cloud", "../img/game_cloud.png");
-    this.load.image("tree", "../img/tree.png");
+    this.load.image("tree", "../assets/animation/tree.png");
 
     // bgm
     this.load.audio("ending", "../audio/ending.mp3");
