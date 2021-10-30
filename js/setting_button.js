@@ -4,7 +4,9 @@ export default class SettingButton extends Phaser.GameObjects.Container {
 
     this.scene = scene;
     this.scene.add.existing(this);
-    this.setSize(width, height).setInteractive();
+    this.setSize(width, height);
+    this.setInteractive();
+    this.setData("value", text);
 
     this.buttonText = scene.add
       .text(width / 2, height / 2, text, {
