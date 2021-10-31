@@ -3,12 +3,6 @@ import SettingButton from "./setting_button.js";
 export default class GameSetting extends Phaser.Scene {
   constructor() {
     super({ key: "game_setting", active: false });
-    this.size = "4x8";
-    this.mode = "timeLimit";
-    this.schoolYear = "1年生";
-    this.sizeButtons = {};
-    this.modeButtons = {};
-    this.schoolYearButtons = {};
   }
 
   preload() {
@@ -21,14 +15,11 @@ export default class GameSetting extends Phaser.Scene {
 
   init() {
     this.size = "多い";
-    this.mode = "制限時間";
+    this.mode = "時間制限";
     this.schoolYear = "1年生";
-    this.selectedSettingCategory = "漢字の数";
-    this.sizeButtons = [];
-    this.modeButtons = [];
-    this.schoolYearButtons = [];
-    this.settingGroup = {};
-    this.settingSelectinButtons = [];
+    this.selectedSettingCategory = "size";
+    this.categoryButtons = [];
+    this.settingButtons = [];
   }
 
   create() {
@@ -92,65 +83,153 @@ export default class GameSetting extends Phaser.Scene {
     const gameMenuLine = this.add.graphics();
     gameMenuLine.fillStyle(0x535353, 1).fillRect(396, 154, 2, 446);
 
-    // ゲームサイズ
-    const gameSizeButton = this.add.text(210, 236, "漢字の数", {
-      fontSize: 32,
-      padding: 3,
-    }).setData("value", "size");
+    this.categoryButtons = [
+      // ゲームサイズ
+      this.add
+        .text(210, 236, "漢字の数", {
+          fontSize: 32,
+          padding: 3,
+        })
+        .setData("value", "size"),
 
-    // プレイモード
-    const playModeButton = this.add.text(162, 350, "ゲームモード", {
-      fontSize: 32,
-      padding: 3,
-    }).setData("value", "mode");
+      // プレイモード
+      this.add
+        .text(162, 350, "ゲームモード", {
+          fontSize: 32,
+          padding: 3,
+        })
+        .setData("value", "mode"),
 
-    playModeButton
-      .setInteractive()
-      .setPadding(4)
-      .on("pointerdown", () => {
-        playModeButton.setStyle({
-          color: "#00bfff",
-        });
-      });
-
-    // 出てくる漢字
-    const kanjiButton = this.add.text(163, 463, "出てくる漢字", {
-      fontSize: 32,
-      padding: 3,
-    }).setData("value", "schoolYear");
-    kanjiButton
-      .setInteractive()
-      .setPadding(4)
-      .on("pointerdown", () => {
-        kanjiButton.setStyle({
-          color: "#00bfff",
-        });
-      });
-
-    this.sizeButtons = [
-      new SettingButton(this, 585, 224, 134, 56, "少ない", 24).setData("category", "size"),
-      new SettingButton(this, 585, 338, 134, 56, "ふつう", 24).setData("category", "size"),
-      new SettingButton(this, 585, 451, 134, 56, "多い", 24).setData("category", "size")
+      // 出てくる漢字
+      this.add
+        .text(163, 463, "出てくる漢字", {
+          fontSize: 32,
+          padding: 3,
+        })
+        .setData("value", "schoolYear"),
     ];
+    this.categoryButtons.forEach((element) =>
+      element.setInteractive().on(
+        "pointerdown",
+        () => {
+          this.selectedSettingCategory = element.getData("value");
+          this.updateView();
+        },
+        this
+      )
+    );
 
-    this.modeButtons = [
-      new SettingButton(this, 585, 224, 160, 56, "時間制限", 24),
-      new SettingButton(this, 551, 338, 229, 56, "タイムアタック", 24),
-      new SettingButton(this, 573, 452, 184, 56, "サドンデス", 24),
-    ];
-    this.modeButtons.forEach((e) => e.setData("category", "mode"));
+    this.settingButtons = [
+      new SettingButton(this, 585, 224, 134, 56, "少ない", 24).setData(
+        "category",
+        "size"
+      ),
+      new SettingButton(this, 585, 338, 134, 56, "ふつう", 24).setData(
+        "category",
+        "size"
+      ),
+      new SettingButton(this, 585, 451, 134, 56, "多い", 24).setData(
+        "category",
+        "size"
+      ),
 
-    this.schoolYearButtons = [
-      new SettingButton(this, 430, 236, 134, 56, "1年生", 24),
-      new SettingButton(this, 584, 236, 134, 56, "2年生", 24),
-      new SettingButton(this, 738, 236, 134, 56, "3年生", 24),
-      new SettingButton(this, 430, 350, 134, 56, "4年生", 24),
-      new SettingButton(this, 584, 350, 134, 56, "5年生", 24),
-      new SettingButton(this, 736, 350, 134, 56, "6年生", 24),
+      new SettingButton(this, 585, 224, 160, 56, "時間制限", 24).setData(
+        "category",
+        "mode"
+      ),
+      new SettingButton(this, 551, 338, 229, 56, "タイムアタック", 24).setData(
+        "category",
+        "mode"
+      ),
+      new SettingButton(this, 573, 452, 184, 56, "サドンデス", 24).setData(
+        "category",
+        "mode"
+      ),
+
+      new SettingButton(this, 430, 162, 134, 56, "1年生", 24).setData(
+        "category",
+        "schoolYear"
+      ),
+      new SettingButton(this, 584, 162, 134, 56, "2年生", 24).setData(
+        "category",
+        "schoolYear"
+      ),
+      new SettingButton(this, 738, 162, 134, 56, "3年生", 24).setData(
+        "category",
+        "schoolYear"
+      ),
+      new SettingButton(this, 430, 238, 134, 56, "4年生", 24).setData(
+        "category",
+        "schoolYear"
+      ),
+      new SettingButton(this, 584, 238, 134, 56, "5年生", 24).setData(
+        "category",
+        "schoolYear"
+      ),
+      new SettingButton(this, 738, 238, 134, 56, "6年生", 24).setData(
+        "category",
+        "schoolYear"
+      ),
+      new SettingButton(this, 430,314, 134, 56, "低学年", 24).setData(
+        "category",
+        "schoolYear"
+      ),
+      new SettingButton(this, 584,314, 134, 56, "中学年", 24).setData(
+        "category",
+        "schoolYear"
+      ),
+      new SettingButton(this, 738,314, 134, 56, "高学年", 24).setData(
+        "category",
+        "schoolYear"
+      ),
+      new SettingButton(this, 567, 390, 168, 56, "総合問題", 24).setData(
+        "category",
+        "schoolYear"
+      ),
+      new SettingButton(this, 430, 466, 192, 56, "中学生範囲", 24).setData(
+        "category",
+        "schoolYear"
+      ),
+      new SettingButton(this, 680, 466, 192, 56, "常用＋常外", 24).setData(
+        "category",
+        "schoolYear"
+      ),
+      new SettingButton(this, 430, 542, 192, 56, "小学＋中学", 24).setData(
+        "category",
+        "schoolYear"
+      ),
+      new SettingButton(this, 704, 542, 168, 56, "常外のみ", 24).setData(
+        "category",
+        "schoolYear"
+      )
     ];
-    this.schoolYearButtons.forEach((e) => e.setData("category", "schoolYear"));
+    this.settingButtons.forEach((element) => {
+      element.buttonGraphic.on(
+        "pointerdown",
+        () => {
+          this[element.getData("category")] = element.getData("value");
+          this.updateView();
+        },
+        this
+      );
+    })
+    this.updateView();
   }
-  // updateView() {
 
-  // }
+  updateView() {
+    this.categoryButtons.forEach((element) => {
+      if (this.selectedSettingCategory === element.getData("value"))
+        element.setStyle({ color: "#00bfff" });
+      else element.setStyle({ color: "#ffffff" });
+    });
+
+    this.settingButtons.forEach((element) => {
+      if (this.selectedSettingCategory === element.getData("category")) {
+        element.setVisible(true);
+        if (this[this.selectedSettingCategory] === element.getData("value"))
+          element.changeSelected();
+        else element.changeUnselected();
+      } else element.setVisible(false);
+    });
+  }
 }

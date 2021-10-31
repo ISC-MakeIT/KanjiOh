@@ -5,7 +5,6 @@ export default class SettingButton extends Phaser.GameObjects.Container {
     this.scene = scene;
     this.scene.add.existing(this);
     this.setSize(width, height);
-    this.setInteractive();
     this.setData("value", text);
 
     this.buttonText = scene.add
@@ -20,7 +19,7 @@ export default class SettingButton extends Phaser.GameObjects.Container {
       .lineStyle(4, 0x645246)
       .fillStyle(0xffffff, 1)
       .fillRoundedRect(0, 0, width, height, Math.ceil(height / 2))
-      .strokePath();
+      .strokePath().setInteractive(new Phaser.Geom.Rectangle(0, 0, width, height), Phaser.Geom.Rectangle.Contains);
 
     this.add([this.buttonGraphic, this.buttonText]);
   }
@@ -47,7 +46,8 @@ export default class SettingButton extends Phaser.GameObjects.Container {
       color: "#333333",
     });
     this.buttonGraphic
-      .fillStyle(0x645246, 1)
+      .lineStyle(4, 0x645246)
+      .fillStyle(0xffffff, 1)
       .fillRoundedRect(
         0,
         0,
