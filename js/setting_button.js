@@ -11,6 +11,7 @@ export default class SettingButton extends Phaser.GameObjects.Container {
       .text(width / 2, height / 2, text, {
         fontSize,
         color: "#333333",
+        fontFamily: "Arial",
       })
       .setOrigin(0.5);
 
@@ -19,7 +20,11 @@ export default class SettingButton extends Phaser.GameObjects.Container {
       .lineStyle(4, 0x645246)
       .fillStyle(0xffffff, 1)
       .fillRoundedRect(0, 0, width, height, Math.ceil(height / 2))
-      .strokePath().setInteractive(new Phaser.Geom.Rectangle(0, 0, width, height), Phaser.Geom.Rectangle.Contains);
+      .strokePath()
+      .setInteractive(
+        new Phaser.Geom.Rectangle(0, 0, width, height),
+        Phaser.Geom.Rectangle.Contains
+      );
 
     this.add([this.buttonGraphic, this.buttonText]);
   }

@@ -14,7 +14,7 @@ export default class GameSetting extends Phaser.Scene {
   }
 
   init() {
-    this.size = "多い";
+    this.size = "ふつう";
     this.mode = "時間制限";
     this.schoolYear = "1年生";
     this.selectedSettingCategory = "size";
@@ -78,10 +78,67 @@ export default class GameSetting extends Phaser.Scene {
 
     // ゲームメニュー
     const gameMenuBox = this.add.graphics();
-    gameMenuBox.fillStyle(0x333333, 1).fillRect(120, 154, 787, 446);
+    gameMenuBox.fillStyle(0x333333, 1).fillRect(120, 138, 787, 478);
 
     const gameMenuLine = this.add.graphics();
-    gameMenuLine.fillStyle(0x535353, 1).fillRect(396, 154, 2, 446);
+    gameMenuLine.fillStyle(0x535353, 1).fillRect(396, 138, 2, 478);
+
+    // ゲームスタートボタン・テキスト
+    this.add
+      .graphics()
+      .lineStyle(5, 0x645246)
+      .fillStyle(0x32b65e, 1)
+      .fillRoundedRect(340, 642, 368, 80, 40)
+      .strokePath();
+
+    this.add
+      .text(417, 666, "ゲームスタート", {
+        fontSize: "32px",
+        fill: "#ffffff",
+        fontFamily: "Arial",
+      })
+      .setInteractive()
+      .on(
+        "pointerdown",
+        () => {
+          gameBgm.stop();
+          this.scene.start("hitsuji_game", {
+            size: this.size,
+            mode: this.mode,
+            schoolYear: this.schoolYear,
+          });
+        },
+        this
+      );
+
+    // 遊び方ボタン
+    this.add
+      .graphics()
+      .lineStyle(1.5, 0xffffff)
+      .fillStyle(0x000000, 1)
+      .fillRoundedRect(787, 645, 189, 75, 35)
+      .setInteractive(
+        new Phaser.Geom.Rectangle(787, 645, 189, 75),
+        Phaser.Geom.Rectangle.Contains
+      )
+      .strokePath();
+
+    this.add
+      .text(830, 665, "遊び方", {
+        fontSize: "32px",
+        fill: "#ffffff",
+        fontFamily: "Arial",
+      })
+
+      .setInteractive()
+      .on(
+        "pointerdown",
+        () => {
+          gameBgm.stop();
+          this.scene.start("how_to_play");
+        },
+        this
+      );
 
     this.categoryButtons = [
       // ゲームサイズ
@@ -89,6 +146,7 @@ export default class GameSetting extends Phaser.Scene {
         .text(210, 236, "漢字の数", {
           fontSize: 32,
           padding: 3,
+          fontFamily: "Arial",
         })
         .setData("value", "size"),
 
@@ -97,6 +155,7 @@ export default class GameSetting extends Phaser.Scene {
         .text(162, 350, "ゲームモード", {
           fontSize: 32,
           padding: 3,
+          fontFamily: "Arial",
         })
         .setData("value", "mode"),
 
@@ -105,6 +164,7 @@ export default class GameSetting extends Phaser.Scene {
         .text(163, 463, "出てくる漢字", {
           fontSize: 32,
           padding: 3,
+          fontFamily: "Arial",
         })
         .setData("value", "schoolYear"),
     ];
@@ -170,15 +230,15 @@ export default class GameSetting extends Phaser.Scene {
         "category",
         "schoolYear"
       ),
-      new SettingButton(this, 430,314, 134, 56, "低学年", 24).setData(
+      new SettingButton(this, 430, 314, 134, 56, "低学年", 24).setData(
         "category",
         "schoolYear"
       ),
-      new SettingButton(this, 584,314, 134, 56, "中学年", 24).setData(
+      new SettingButton(this, 584, 314, 134, 56, "中学年", 24).setData(
         "category",
         "schoolYear"
       ),
-      new SettingButton(this, 738,314, 134, 56, "高学年", 24).setData(
+      new SettingButton(this, 738, 314, 134, 56, "高学年", 24).setData(
         "category",
         "schoolYear"
       ),
@@ -201,7 +261,7 @@ export default class GameSetting extends Phaser.Scene {
       new SettingButton(this, 704, 542, 168, 56, "常外のみ", 24).setData(
         "category",
         "schoolYear"
-      )
+      ),
     ];
     this.settingButtons.forEach((element) => {
       element.buttonGraphic.on(
@@ -212,7 +272,7 @@ export default class GameSetting extends Phaser.Scene {
         },
         this
       );
-    })
+    });
     this.updateView();
   }
 
