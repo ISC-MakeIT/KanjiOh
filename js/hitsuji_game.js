@@ -33,12 +33,12 @@ export default class HitsujiGame extends Phaser.Scene {
     switch (data.mode) {
       case "時間制限":
         this.mode = "timeLimit";
-        break
+        break;
       case "タイムアタック":
         this.mode = "timeAttack";
         break;
       default:
-        this.mode = "suddenDeath"
+        this.mode = "suddenDeath";
     }
     this.kanjiList = kanjiList[data.schoolYear];
     this.kanjiIndex = 0;
