@@ -26,7 +26,6 @@ export default class GameMenu extends Phaser.Scene {
     this.load.image("ground6", "../assets/animation/soil_6.png");
     this.load.image("ground7", "../assets/animation/soil_7.png");
 
-
     this.load.image("shiba1", "../assets/animation/frame-01.png");
     this.load.image("shiba2", "../assets/animation/frame-02.png");
     this.load.image("shiba3", "../assets/animation/frame-03.png");
