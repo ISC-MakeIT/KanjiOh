@@ -102,9 +102,36 @@ export default class GameSetting extends Phaser.Scene {
         "pointerdown",
         () => {
           gameBgm.stop();
+          let mode = "";
+          let sizeY = 0;
+          let sizeX = 0;
+          switch (this.size) {
+            case "少ない":
+              sizeY = 3;
+              sizeX = 6;
+              break;
+            case "多い":
+              sizeY = 6;
+              sizeX = 12;
+              break;
+            default:
+              sizeY = 4;
+              sizeX = 8;
+          }
+          switch (this.mode) {
+            case "時間制限":
+              mode = "timeLimit";
+              break;
+            case "タイムアタック":
+              mode = "timeAttack";
+              break;
+            default:
+              mode = "suddenDeath";
+          }
           this.scene.start("hitsuji_game", {
-            size: this.size,
-            mode: this.mode,
+            sizeY,
+            sizeX,
+            mode,
             schoolYear: this.schoolYear,
           });
         },
