@@ -82,7 +82,7 @@ export default class GameResult extends Phaser.Scene {
     // .setOrigin(0.5, 0);
 
     // 正解数
-    this.add.text(350, 230, `クリアした問題数:${this.answers}門`, {
+    this.add.text(350, 230, `クリアした問題数:${this.answers}問`, {
       fill: 0x333333,
       fontFamily: "Arial",
       fontSize: "32px",
@@ -125,14 +125,14 @@ export default class GameResult extends Phaser.Scene {
       .fillRoundedRect(697, 332, 265, 72, 35)
       .strokePath()
       .setInteractive(
-        new Phaser.Geom.Rectangle(697, 332, 272, 72),
+        new Phaser.Geom.Rectangle(697, 332, 265, 72),
         Phaser.Geom.Rectangle.Contains
       ).depth = 2;
 
     backGameSetButton.on(
       "pointerdown",
       () => {
-        this.scene.start("hituji_game");
+        this.scene.start("game_setting");
       },
       this
     );
@@ -153,14 +153,14 @@ export default class GameResult extends Phaser.Scene {
       .fillRoundedRect(377, 332, 265, 72, 35)
       .strokePath()
       .setInteractive(
-        new Phaser.Geom.Rectangle(377, 332, 272, 72),
+        new Phaser.Geom.Rectangle(377, 332, 265, 72),
         Phaser.Geom.Rectangle.Contains
       ).depth = 2;
 
     retryGameButton.on(
       "pointerdown",
       () => {
-        this.scene.start("game_setting");
+        this.scene.start("Hituji_game");
       },
       this
     );
