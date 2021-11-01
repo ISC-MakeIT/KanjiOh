@@ -16,10 +16,30 @@ export default class HitsujiGame extends Phaser.Scene {
   }
 
   init(data) {
-    this.mode = data.mode;
     this.schoolYear = data.schoolYear;
-    this.sizeY = data.size[0] - 0;
-    this.sizeX = data.size[2] - 0;
+    switch (data.size) {
+      case "少ない":
+        this.sizeY = 3;
+        this.sizeX = 6;
+        break;
+      case "多い":
+        this.sizeY = 6;
+        this.sizeX = 12;
+        break;
+      default:
+        this.sizeY = 4;
+        this.sizeX = 8;
+    }
+    switch (data.mode) {
+      case "時間制限":
+        this.mode = "timeLimit";
+        break;
+      case "タイムアタック":
+        this.mode = "timeAttack";
+        break;
+      default:
+        this.mode = "suddenDeath";
+    }
     this.kanjiList = kanjiList[data.schoolYear];
     this.kanjiIndex = 0;
     this.kanjiComponents = [];
