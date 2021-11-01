@@ -33,6 +33,8 @@ export default class GameMenu extends Phaser.Scene {
 
     // bgm
     this.load.audio("top_bgm", "../audio/top.mp3");
+    // SE
+    this.load.audio("mode_decide_se", "../audio/mode_decide.mp3");
   }
 
   create() {
@@ -193,6 +195,9 @@ export default class GameMenu extends Phaser.Scene {
   gameMenuFade() {
     // ゲームメニューボタン
 
+    // 決定SE
+    const modeDecideSe = this.sound.add("mode_decide_se");
+
     // 羊の中に～ボタン/テキスト
     const fndDiffButton = this.add.graphics();
 
@@ -210,6 +215,7 @@ export default class GameMenu extends Phaser.Scene {
       "pointerdown",
       () => {
         this.gameBgm.stop();
+        modeDecideSe.play();
         this.scene.start("game_setting");
       },
       this
@@ -221,16 +227,8 @@ export default class GameMenu extends Phaser.Scene {
     });
 
     fndDiffText
-      .setInteractive()
       .setPadding(4)
-      .on(
-        "pointerdown",
-        () => {
-          this.gameBgm.stop();
-          this.scene.start("game_setting");
-        },
-        this
-      ).depth = 2;
+      .depth = 3;
 
     // 作成中にする
     // 多言語

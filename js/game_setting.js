@@ -11,6 +11,8 @@ export default class GameSetting extends Phaser.Scene {
 
     // bgm
     this.load.audio("top_bgm", "../audio/top.mp3");
+    this.load.audio("game_start_se", "../audio/game_start.mp3");
+
   }
 
   init() {
@@ -83,6 +85,10 @@ export default class GameSetting extends Phaser.Scene {
     const gameMenuLine = this.add.graphics();
     gameMenuLine.fillStyle(0x535353, 1).fillRect(396, 138, 2, 478);
 
+    // ゲームスタートSE
+    const gameStartSe = this.sound.add("game_start_se");
+
+
     // ゲームスタートボタン・テキスト
     this.add
       .graphics()
@@ -102,6 +108,7 @@ export default class GameSetting extends Phaser.Scene {
         "pointerdown",
         () => {
           gameBgm.stop();
+          gameStartSe.play();
           let mode = "";
           let sizeY = 0;
           let sizeX = 0;
