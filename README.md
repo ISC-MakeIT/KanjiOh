@@ -1,5 +1,7 @@
 # 漢字王プロジェクト
 
+現在のリポジトリ　https://github.com/chikyu-gakko/kanjiou　なので間違えないように
+
 ## 環境構築
 
 ```shell
